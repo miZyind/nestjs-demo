@@ -1,0 +1,155 @@
+{
+  "name": "nestjs-demo",
+  "version": "1.0.0",
+  "description": "A demo project of NestJS",
+  "repository": "git@github.com:miZyind/nestjs-demo.git",
+  "author": "miZyind <mizyind@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "yarn lint && tsc",
+    "start": "node dist",
+    "typeorm": "ts-node node_modules/typeorm/cli.js",
+    "migration:generate": "yarn typeorm migration:generate -n",
+    "migration:create": "yarn typeorm migration:create -n",
+    "migration:run": "yarn typeorm migration:run",
+    "lint": "eslint '*/**/*.ts' --max-warnings 0"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@nestjs/common": "^6.11.7",
+    "@nestjs/core": "^6.11.7",
+    "@nestjs/platform-express": "^6.11.7",
+    "@nestjs/swagger": "^4.2.8",
+    "@nestjs/typeorm": "^6.3.1",
+    "@nestjsx/crud": "^4.4.1",
+    "@nestjsx/crud-typeorm": "^4.4.1",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nestjs-config": "^1.4.5",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.5.4",
+    "swagger-ui-express": "^4.1.3",
+    "typeorm": "^0.2.22"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^13.7.1",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "tsconfig.json",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "camelcase": "error",
+      "no-underscore-dangle": "error",
+      "object-shorthand": [
+        "error",
+        "always"
+      ],
+      "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "variable",
+          "leadingUnderscore": "forbid",
+          "trailingUnderscore": "forbid",
+          "format": [
+            "camelCase",
+            "PascalCase",
+            "UPPER_CASE"
+          ]
+        },
+        {
+          "selector": "parameter",
+          "format": [
+            "camelCase",
+            "PascalCase"
+          ],
+          "leadingUnderscore": "forbid",
+          "trailingUnderscore": "forbid"
+        },
+        {
+          "selector": "property",
+          "format": [
+            "camelCase",
+            "PascalCase",
+            "UPPER_CASE"
+          ],
+          "leadingUnderscore": "forbid",
+          "trailingUnderscore": "forbid"
+        },
+        {
+          "selector": "memberLike",
+          "leadingUnderscore": "allow",
+          "trailingUnderscore": "forbid",
+          "format": [
+            "camelCase"
+          ]
+        },
+        {
+          "selector": "enumMember",
+          "format": [
+            "PascalCase",
+            "UPPER_CASE"
+          ]
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "endOfLine": "lf"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "exec": "ts-node src"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}
