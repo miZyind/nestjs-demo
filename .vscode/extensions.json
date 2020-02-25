@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "wmaurer.change-case",
+    "mikestead.dotenv",
+    "dbaeumer.vscode-eslint",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "mike-co.import-sorter"
+  ]
+}
