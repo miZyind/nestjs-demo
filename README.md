@@ -12,6 +12,15 @@
 
 ## 🔮 Usage
 
+Run auto testing
+
+```bash=
+# Run the test cases
+yarn test
+# Run the test cases and output the code coverage
+yarn test:cov
+```
+
 Run development environment:
 
 ```bash
