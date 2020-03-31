@@ -2,6 +2,6 @@
 .DS_Store
 *.log
 coverage
-dist
 node_modules
+dist
 volumes

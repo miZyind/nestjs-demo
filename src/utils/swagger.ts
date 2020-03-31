@@ -7,18 +7,22 @@ import {
   SwaggerModule,
 } from '@nestjs/swagger';
 
-import { ModulesV1 } from './modules/v1';
-import { ModulesV2 } from './modules/v2';
+import { ModulesV1 } from '../modules/v1';
+import { ModulesV2 } from '../modules/v2';
 
-export function Swagger(
+export function setupSwagger(
   app: INestApplication,
   name: string,
   basePath: string,
 ): void {
   const config = new DocumentBuilder()
+    .addSecurity('jwt', {
+      name: 'token',
+      type: 'apiKey',
+      in: 'query',
+    })
     .setTitle(`${name} API`)
-    .setDescription(`The ${name} API description`)
-    .addBearerAuth();
+    .setDescription(`The ${name} API description`);
   const options: SwaggerCustomOptions = {
     swaggerOptions: {
       defaultModelExpandDepth: 10,

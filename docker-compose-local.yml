@@ -1,18 +1,14 @@
 version: '3.3'
 services:
-  mysql:
-    container_name: mysql
+  db:
+    container_name: nd-db
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: nestjs_demo
-      MYSQL_USER: nestjs
-      MYSQL_PASSWORD: 123456
+      MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
     ports:
       - 3306:3306
-    expose:
-      - 3306
     volumes:
+      - ./docker/provision/mysql/init:/docker-entrypoint-initdb.d
       - ./volumes/mysql:/var/lib/mysql
     command:
       - 'mysqld'
@@ -20,3 +16,11 @@ services:
       - '--collation-server=utf8mb4_unicode_ci'
       - '--skip-character-set-client-handshake'
       - '--default-authentication-plugin=mysql_native_password'
+  mq:
+    container_name: nd-mq
+    image: rabbitmq:3-management-alpine
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - ./volumes/rabbitmq:/var/lib/rabbitmq

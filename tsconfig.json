@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "target": "esnext",
+    "target": "ES2017",
     "module": "commonjs",
     "outDir": "dist",
     /* Strict Type-Checking Options */
@@ -27,7 +27,8 @@
     "preserveConstEnums": true,
     "removeComments": true,
     "incremental": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "sourceMap": true
   },
   "include": ["src", "typings"],
   "exclude": ["dist", "node_modules"]
