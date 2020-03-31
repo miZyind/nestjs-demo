@@ -1,11 +1,10 @@
 import supertest from 'supertest';
 import { Repository } from 'typeorm';
 
-import { INestApplication } from '@nestjs/common';
-import { Test } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { HttpServer, HttpStatus, INestApplication } from '@nestjs/common';
 
-import { Todo, TodoStatus } from '../../../entities/todo';
+import { Todo, TodoStatus } from '../../../entities/todo.entity';
+import { initializeE2ETestModule } from '../e2e-test';
 import { TodoModule } from './todo.module';
 
 describe('Todo', () => {
@@ -13,29 +12,17 @@ describe('Todo', () => {
   let repository: Repository<Todo>;
 
   beforeAll(async () => {
-    const module = await Test.createTestingModule({
-      imports: [
-        TodoModule,
-        TypeOrmModule.forRoot({
-          type: 'mysql',
-          host: 'localhost',
-          port: 3306,
-          username: 'nestjs',
-          password: '123456',
-          database: 'nestjs_demo',
-          entities: ['src/entities/*.ts'],
-          synchronize: false,
-        }),
-      ],
-    }).compile();
+    const { module, app: testApp } = await initializeE2ETestModule(TodoModule);
 
-    app = module.createNestApplication();
+    app = testApp;
+
     repository = module.get('TodoRepository');
+
     await app.init();
   });
 
   afterEach(async () => {
-    await repository.query(`DELETE FROM todo;`);
+    await repository.query('DELETE FROM todo;');
   });
 
   afterAll(async () => {
@@ -50,13 +37,13 @@ describe('Todo', () => {
       ]);
 
       const { body } = await supertest
-        .agent(app.getHttpServer())
+        .agent(app.getHttpServer() as HttpServer)
         .get('/v1/todos')
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
-        .expect(200);
+        .expect(HttpStatus.OK);
 
-      expect(body).toEqual([
+      expect(body as unknown).toEqual([
         {
           uuid: expect.any(String),
           message: 'test-todo-msg-0',

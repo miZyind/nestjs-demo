@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Base } from './base';
+import { Base } from './base.entity';
 
 export enum TodoStatus {
   Doing = 'DOING',
@@ -10,15 +10,15 @@ export enum TodoStatus {
 @Entity()
 export class Todo extends Base {
   @PrimaryGeneratedColumn('uuid')
-  public uuid!: string;
+  uuid!: string;
 
   @Column('text')
-  public message!: string;
+  message!: string;
 
   @Column({
     type: 'enum',
     enum: TodoStatus,
     default: TodoStatus.Doing,
   })
-  public status!: TodoStatus;
+  status!: TodoStatus;
 }
