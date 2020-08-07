@@ -1,35 +1,50 @@
+/* TSConfig Reference https://www.typescriptlang.org/docs */
 {
+  /* File Inclusion */
+  "include": ["src", "typings"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    /* Basic Options */
-    "target": "ES2017",
+    /* Project Options */
+    "importHelpers": true,
+    "isolatedModules": true,
     "module": "commonjs",
     "outDir": "dist",
-    /* Strict Type-Checking Options */
+    "removeComments": true,
+    "target": "ES2017",
+    /* Strict Checks */
     "strict": true,
-    "skipLibCheck": true,
-    /* Additional Checks */
+    /* Module Resolution */
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "paths": {
+      "#configs": ["src/configs"],
+      "#configs/*": ["src/configs/*"],
+      "#entities/*": ["src/entities/*"],
+      "#models": ["src/models"],
+      "#models/*": ["src/models/*"],
+      "#utils/*": ["src/utils/*"],
+      /* NestJS Modules */
+      "#app/*": ["src/modules/app/*"],
+      "#logger/*": ["src/modules/logger/*"],
+      "#v1": ["src/modules/v1"],
+      "#v1/*": ["src/modules/v1/*"]
+    },
+    "typeRoots": ["node_modules/@types", "typings"],
+    /* Linter Checks */
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    /* Module Resolution Options */
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types", "typings"],
-    /* Experimental Options */
-    "experimentalDecorators": true,
+    /* Experimental */
     "emitDecoratorMetadata": true,
-    /* Compilation Options */
+    "experimentalDecorators": true,
+    /* Advanced */
+    "forceConsistentCasingInFileNames": true,
     "preserveConstEnums": true,
-    "removeComments": true,
-    "incremental": true,
-    "isolatedModules": true,
-    "sourceMap": true
-  },
-  "include": ["src", "typings"],
-  "exclude": ["dist", "node_modules"]
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "lib": ["ES2019.Array"]
+  }
 }

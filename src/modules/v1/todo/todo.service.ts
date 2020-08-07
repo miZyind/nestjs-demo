@@ -2,53 +2,57 @@ import { Repository } from 'typeorm';
 
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CrudRequest, GetManyDefaultResponse } from '@nestjsx/crud';
+import { CrudRequest } from '@nestjsx/crud';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 
-import { Todo } from '../../../entities/todo.entity';
-import { TodoError } from './todo.constant';
+import { Todo } from '#entities/todo.entity';
+import { Logger } from '#logger/logger.service';
+import { hasValue } from '#utils/type-guard';
+
+import { GetTodosResponse } from './responses/get-todos.response';
+import { TodoError } from './todo.error';
 
 @Injectable()
 export class TodoService extends TypeOrmCrudService<Todo> {
-  constructor(@InjectRepository(Todo) protected repo: Repository<Todo>) {
+  constructor(
+    private readonly logger: Logger,
+    @InjectRepository(Todo) protected repo: Repository<Todo>,
+  ) {
     super(repo);
+    this.logger.setContext(this.constructor.name);
   }
 
   async create(message: string): Promise<void> {
     await this.repo.save(this.repo.create({ message }));
   }
 
-  async read(request: CrudRequest): Promise<GetManyDefaultResponse<Todo>> {
-    request.options.query = {
-      ...request.options.query,
+  async get(req: CrudRequest): Promise<GetTodosResponse> {
+    req.options.query = {
+      ...req.options.query,
       // Explicitly allow return fields
       allow: ['uuid', 'message', 'status', 'createdAt', 'updatedAt'],
     };
 
-    const response = (await this.getMany(request)) as GetManyDefaultResponse<
-      Todo
-    >;
-
-    return response;
+    return (await this.getMany(req)) as GetTodosResponse;
   }
 
   async update(uuid: string, partialEntity: Partial<Todo>): Promise<void> {
-    await this.findOneOrFail(uuid);
+    await this.findOneOrError(uuid);
     await this.repo.update(uuid, partialEntity);
   }
 
   async delete(uuid: string): Promise<void> {
-    await this.findOneOrFail(uuid);
+    await this.findOneOrError(uuid);
     await this.repo.delete(uuid);
   }
 
-  private async findOneOrFail(uuid: string): Promise<Todo> {
-    try {
-      const todo = await this.repo.findOneOrFail(uuid);
+  private async findOneOrError(uuid: string): Promise<Todo> {
+    const todo = await this.repo.findOne(uuid);
 
-      return todo;
-    } catch (error) {
+    if (!hasValue(todo)) {
       throw new BadRequestException(TodoError.TodoNotFound);
     }
+
+    return todo;
   }
 }

@@ -6,7 +6,7 @@
 
 ## 💠 Requirement
 
-- NodeJS >= 12
+- NodeJS >= 14
 - MySQL >= 8
   - Auto migration: true
 

@@ -2,8 +2,8 @@ import { CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 export abstract class Base {
   @CreateDateColumn()
-  createdAt!: Date;
+  readonly createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt!: Date;
+  readonly updatedAt!: Date;
 }

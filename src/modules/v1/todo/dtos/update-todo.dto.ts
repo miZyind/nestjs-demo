@@ -2,18 +2,18 @@ import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
 
-import { TodoStatus } from '../../../../entities/todo.entity';
+import { TodoStatus } from '#entities/todo.entity';
 
 export class UpdateTodoDto {
   @IsOptional()
-  @IsString()
   @IsNotEmpty()
+  @IsString()
   @ApiProperty({ example: 'Remember to buy 4 eggs before tonight' })
   message!: string;
 
   @IsOptional()
-  @IsEnum(TodoStatus)
   @IsNotEmpty()
+  @IsEnum(TodoStatus)
   @ApiProperty({ example: TodoStatus.Done })
   status!: TodoStatus;
 }

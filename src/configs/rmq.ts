@@ -1,7 +1,7 @@
-export default {
-  enable: process.env.RABBITMQ_ENABLE === 'true',
+export = {
+  enable: process.env.RMQ_ENABLE === 'true',
   options: {
-    urls: process.env.RABBITMQ_URLS?.split(','),
+    urls: [String(process.env.RMQ_URL)],
     queue: 'nestjs_demo_queue',
     prefetchCount: 1,
     noAck: false,

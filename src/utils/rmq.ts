@@ -1,9 +1,11 @@
 import { INestApplication } from '@nestjs/common';
-import { RmqOptions, Transport } from '@nestjs/microservices';
+import { Transport } from '@nestjs/microservices';
 
-export function setupRMQ(
+import { RMQConfig } from '#configs';
+
+export function setup(
   app: INestApplication,
-  options: RmqOptions['options'],
+  options: RMQConfig['options'],
 ): void {
   app.connectMicroservice({ transport: Transport.RMQ, options });
 }
