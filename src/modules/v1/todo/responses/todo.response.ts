@@ -1,10 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { GetManyDefaultResponse } from '@nestjsx/crud';
 
 import { TodoStatus } from '#entities/todo.entity';
-import { StandardizedList } from '#utils/standard-response';
+import { Standardized } from '#utils/standardizer';
 
-export class GetTodos {
+export class TodoInfo {
   @ApiProperty({ format: 'date-time' })
   createdAt!: Date;
 
@@ -21,6 +20,4 @@ export class GetTodos {
   status!: TodoStatus;
 }
 
-export type GetTodosResponse = GetManyDefaultResponse<GetTodos>;
-
-export const GetTodosResponse = StandardizedList(GetTodos);
+export const TodoResponse = Standardized(TodoInfo);

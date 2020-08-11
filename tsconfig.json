@@ -27,9 +27,7 @@
       "#utils/*": ["src/utils/*"],
       /* NestJS Modules */
       "#app/*": ["src/modules/app/*"],
-      "#logger/*": ["src/modules/logger/*"],
-      "#v1": ["src/modules/v1"],
-      "#v1/*": ["src/modules/v1/*"]
+      "#v1": ["src/modules/v1"]
     },
     "typeRoots": ["node_modules/@types", "typings"],
     /* Linter Checks */

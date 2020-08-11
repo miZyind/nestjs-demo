@@ -1,5 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
+import { Account } from './account.entity';
 import { Base } from './base.entity';
 
 export enum TodoStatus {
@@ -21,4 +28,8 @@ export class Todo extends Base {
     default: TodoStatus.Doing,
   })
   status!: TodoStatus;
+
+  @JoinColumn({ name: 'accountUUID' })
+  @ManyToOne(() => Account)
+  account!: Account;
 }

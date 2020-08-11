@@ -1,74 +1,81 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
+  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
-import { CrudRequest, ParsedRequest } from '@nestjsx/crud';
+import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 
-import { UUIDParamDto } from '#models/dtos/uuid-param.dto';
+import { AuthStrategy } from '#app/app.constant';
+import { Account } from '#entities/account.entity';
+import { Todo } from '#entities/todo.entity';
+import { StandardResponse } from '#models/responses/standard.response';
 import {
   SafeCrudRequestInterceptor,
   StandardResponseInterceptor,
 } from '#utils/interceptor';
-import { Standardized } from '#utils/standard-response';
 
 import { CreateTodoDto } from './dtos/create-todo.dto';
 import { UpdateTodoDto } from './dtos/update-todo.dto';
-import { GetTodosResponse } from './responses/get-todos.response';
+import { TodoResponse } from './responses/todo.response';
+import { TodosResponse } from './responses/todos.response';
 import { TodoService } from './todo.service';
 
 @ApiTags('Todo')
+@ApiSecurity(AuthStrategy.JWT)
+@UseGuards(AuthGuard(AuthStrategy.JWT))
+@Crud({
+  model: { type: Todo },
+  dto: { create: CreateTodoDto, update: UpdateTodoDto },
+  query: {
+    join: { account: { eager: true, select: false, required: true } },
+    alwaysPaginate: true,
+  },
+  routes: {
+    exclude: ['createManyBase', 'replaceOneBase'],
+    getOneBase: {
+      decorators: [
+        ApiOperation({ summary: 'Read one todo' }),
+        ApiOkResponse({ type: TodoResponse }),
+      ],
+    },
+    getManyBase: {
+      decorators: [
+        ApiOperation({ summary: 'Read many todos' }),
+        ApiOkResponse({ type: TodosResponse }),
+      ],
+    },
+    createOneBase: {
+      decorators: [
+        ApiOperation({ summary: 'Create a new todo' }),
+        ApiCreatedResponse({ type: TodoResponse }),
+      ],
+    },
+    updateOneBase: {
+      decorators: [
+        ApiOperation({ summary: 'Update an existing todo' }),
+        ApiOkResponse({ type: TodoResponse }),
+      ],
+    },
+    deleteOneBase: {
+      decorators: [
+        ApiOperation({ summary: 'Delete an existing todo' }),
+        ApiOkResponse({ type: StandardResponse }),
+      ],
+    },
+  },
+  params: { uuid: { field: 'uuid', type: 'uuid', primary: true } },
+})
+@CrudAuth({
+  property: 'user',
+  filter: ({ uuid }: Account) => ({ 'account.uuid': uuid }),
+  persist: ({ uuid }: Account) => ({ account: { uuid } }),
+})
 @Controller('v1/todos')
 @UseInterceptors(SafeCrudRequestInterceptor, StandardResponseInterceptor)
-export class TodoController {
-  constructor(private readonly service: TodoService) {}
-
-  @Post()
-  @ApiOperation({ summary: 'Create a new todo' })
-  @ApiCreatedResponse({ type: Standardized() })
-  async create(@Body() { message }: CreateTodoDto): Promise<void> {
-    await this.service.create(message);
-  }
-
-  @Get()
-  @ApiOperation({ summary: 'Get todos' })
-  @ApiOkResponse({ type: GetTodosResponse })
-  async get(@ParsedRequest() req: CrudRequest): Promise<GetTodosResponse> {
-    return this.service.get(req);
-  }
-
-  @Get()
-  @ApiOperation({ summary: 'Get a todo' })
-  @ApiOkResponse({ type: GetTodosResponse })
-  async getOne(@ParsedRequest() req: CrudRequest): Promise<GetTodosResponse> {
-    return this.service.get(req);
-  }
-
-  @Patch(':uuid')
-  @ApiOperation({ summary: 'Update an existing todo' })
-  @ApiOkResponse({ type: Standardized() })
-  async update(
-    @Param() { uuid }: UUIDParamDto,
-    @Body() dto: UpdateTodoDto,
-  ): Promise<void> {
-    await this.service.update(uuid, dto);
-  }
-
-  @Delete(':uuid')
-  @ApiOperation({ summary: 'Delete an existing todo' })
-  @ApiOkResponse({ type: Standardized() })
-  async delete(@Param() { uuid }: UUIDParamDto): Promise<void> {
-    await this.service.delete(uuid);
-  }
+export class TodoController implements CrudController<Todo> {
+  constructor(readonly service: TodoService) {}
 }

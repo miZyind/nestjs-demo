@@ -9,11 +9,11 @@ export class UpdateTodoDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty({ example: 'Remember to buy 4 eggs before tonight' })
-  message!: string;
+  readonly message!: string;
 
   @IsOptional()
   @IsNotEmpty()
   @IsEnum(TodoStatus)
   @ApiProperty({ example: TodoStatus.Done })
-  status!: TodoStatus;
+  readonly status!: TodoStatus;
 }

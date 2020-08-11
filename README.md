@@ -12,15 +12,6 @@
 
 ## 🔮 Usage
 
-Run auto testing
-
-```bash=
-# Run the test cases
-yarn test
-# Run the test cases and output the code coverage
-yarn test:cov
-```
-
 Run development environment:
 
 ```bash
@@ -44,7 +35,7 @@ $ yarn build
 # Launch app through Yarn
 $ yarn start
 # Launch app through Node
-$ node dist
+$ node dist/main.js
 ```
 
 ## 🌌 Techniques
@@ -53,7 +44,6 @@ $ node dist
   - **[@nestjs/platform-express](https://github.com/expressjs/express)** - Fast, unopinionated, minimalist web framework for NodeJS.
   - **[@nestjs/typeorm](https://typeorm.io)** - ORM for TypeScript and JavaScript (ES7, ES6, ES5).
   - **[@nestjs/swagger](https://swagger.io)** - Simplify API development for users, teams, and enterprises.
-  - **[nestjs-config](https://github.com/nestjsx/nestjs-config)** - Config module for NestJS using dotenv.
 - **[TypeScript](https://www.typescriptlang.org)** - Typed superset of JavaScript that compiles to plain JavaScript.
   - **[ts-node](https://github.com/TypeStrong/ts-node)** - TypeScript execution and REPL for NodeJS.
   - **[typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)** - Monorepo for all the tooling which enables ESLint to support TypeScript.
@@ -64,7 +54,6 @@ $ node dist
 - **[Class Validator](https://github.com/typestack/class-validator)** - Validation made easy using TypeScript decorators.
 - **[Reflect Metadata](https://github.com/rbuckton/reflect-metadata)** - Prototype for a Metadata Reflection API for ECMAScript.
 - **[RxJS](https://rxjs.dev)**- A reactive programming library for JavaScript.
-- **[Nodemon](https://github.com/remy/nodemon)** - Monitor for any changes in your node.js application and automatically restart the server.
 - **[Prettier](https://prettier.io)** - An opinionated code formatter.
 
 ## Author

@@ -4,7 +4,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from '#app/app.module';
 import Config, { AppConfig, RMQConfig, SwaggerConfig } from '#configs';
-import { BaseExceptionFilter } from '#utils/base-exception-filter';
+import { BaseExceptionFilter } from '#utils/exception-filter';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -20,14 +20,14 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
   app.useGlobalFilters(new BaseExceptionFilter());
 
-  // Setup RabbitMQ
+  // Setup RabbitMQ service
   if (rmqConf.enable) {
-    (await import('./utils/rmq')).setup(app, rmqConf.options);
+    (await import('./services/rmq')).setup(app, rmqConf.options);
   }
 
-  // Setup Swagger
+  // Setup Swagger service
   if (swaggerConf.enable) {
-    (await import('./utils/swagger')).setup(app, appConf);
+    (await import('./services/swagger')).setup(app, appConf);
   }
 
   // Launch app

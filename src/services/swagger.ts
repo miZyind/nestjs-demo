@@ -7,6 +7,7 @@ import {
   SwaggerModule,
 } from '@nestjs/swagger';
 
+import { AuthStrategy } from '#app/app.constant';
 import { AppConfig } from '#configs';
 import { ModulesV1 } from '#v1';
 
@@ -14,7 +15,12 @@ export function setup(
   app: INestApplication,
   { name, basePath }: AppConfig,
 ): void {
-  const config = new DocumentBuilder().setTitle(`${name} API`);
+  const config = new DocumentBuilder()
+    .setTitle(`${name} API`)
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+      AuthStrategy.JWT,
+    );
   const options: SwaggerCustomOptions = {
     swaggerOptions: {
       defaultModelExpandDepth: 10,

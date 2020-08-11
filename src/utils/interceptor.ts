@@ -12,7 +12,7 @@ import { CrudRequest, CrudRequestInterceptor } from '@nestjsx/crud';
 
 import { StandardResponse } from '#models';
 
-import { hasValue } from './type-guard';
+import { hasValue } from './guarder';
 
 type InterceptedRequest = Request & {
   NESTJSX_PARSED_CRUD_REQUEST_KEY?: CrudRequest;

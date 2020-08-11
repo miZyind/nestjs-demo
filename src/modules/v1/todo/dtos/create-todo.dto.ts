@@ -6,5 +6,5 @@ export class CreateTodoDto {
   @IsNotEmpty()
   @IsString()
   @ApiProperty({ example: 'Remember to buy 3 eggs before tonight' })
-  message!: string;
+  readonly message!: string;
 }
