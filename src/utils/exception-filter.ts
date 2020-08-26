@@ -9,9 +9,9 @@ import {
 } from '@nestjs/common';
 
 enum FilteredMessage {
-  INTERNAL_SERVER_ERROR = 'Internal server error, please contact the developer',
-  AUTHORIZATION_ERROR = 'Authorization error, please provide a valid token',
-  VALIDATION_ERROR = 'Validation error, please check the request parameters',
+  InternalServerError = 'Internal server error, please contact the developer',
+  AuthorizationError = 'Authorization error, please provide a valid token',
+  ValidationError = 'Validation error, please check the request parameters',
 }
 
 interface UnfilteredBody {
@@ -36,7 +36,7 @@ export class BaseExceptionFilter implements ExceptionFilter {
       : HttpStatus.INTERNAL_SERVER_ERROR;
     const filteredBody: FilteredBody = {
       code: -1,
-      message: FilteredMessage.INTERNAL_SERVER_ERROR,
+      message: FilteredMessage.InternalServerError,
       data: null,
     };
 
@@ -45,12 +45,12 @@ export class BaseExceptionFilter implements ExceptionFilter {
 
       switch (statusCode) {
         case HttpStatus.UNAUTHORIZED:
-          filteredBody.message = FilteredMessage.AUTHORIZATION_ERROR;
+          filteredBody.message = FilteredMessage.AuthorizationError;
           break;
         case HttpStatus.BAD_REQUEST:
           if (Array.isArray(message)) {
             filteredBody.code = 10000;
-            filteredBody.message = FilteredMessage.VALIDATION_ERROR;
+            filteredBody.message = FilteredMessage.ValidationError;
             filteredBody.data = message;
           } else {
             filteredBody.message = message;
