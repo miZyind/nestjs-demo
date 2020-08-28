@@ -1,8 +1,13 @@
 # NestJS Demo
 
-[![Framework](https://img.shields.io/badge/Framework-NestJS-orange.svg?style=flat-square)](https://nestjs.com)
-[![Language](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat-square)](https://www.typescriptlang.org)
-[![Database](https://img.shields.io/badge/Database-MySQL-blueviolet.svg?style=flat-square)](https://www.mysql.com)
+[![Docker](https://img.shields.io/badge/docker-2496ed?style=for-the-badge&logo=docker&logoColor=fff)](https://www.docker.com)
+[![NodeJS](https://img.shields.io/badge/->=14-339933?style=for-the-badge&label=&logo=node.js&logoColor=fff)](https://nodejs.org)
+[![MySQL](https://img.shields.io/badge/->=8-4479a1?style=for-the-badge&label=&logo=mysql&logoColor=fff)](https://www.mysql.com)
+[![NestJS](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/@nestjs/core?style=for-the-badge&label=&color=e0234e&logo=nestjs)](https://nestjs.com)
+[![TypeScript](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/typescript?style=for-the-badge&label=&color=007acc&logo=typescript)](https://www.typescriptlang.org)
+[![ESLint](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/eslint?style=for-the-badge&label=&color=4b32c3&logo=eslint&logoColor=fff)](https://eslint.org)
+[![Prettier](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=fff)](https://prettier.io)
+[![License](https://img.shields.io/badge/LIC.-mit-404040?style=for-the-badge&labelColor=000)](https://github.com/miZyind/nestjs-demo/blob/master/LICENSE)
 
 ## 💠 Requirement
 
