@@ -4,7 +4,7 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { StandardList, StandardResponse } from '#models';
 
 export function Standardized<T>(type?: Type<T>): Type<StandardResponse<T>> {
-  class StandardizedEntity<T> implements StandardResponse<T> {
+  class StandardizedEntity<D> implements StandardResponse<D> {
     @ApiProperty({ example: 0 })
     code!: number;
 
@@ -12,7 +12,7 @@ export function Standardized<T>(type?: Type<T>): Type<StandardResponse<T>> {
     message!: string;
 
     @ApiProperty({ type, example: type ?? null })
-    data!: T;
+    data!: D;
   }
 
   Object.defineProperty(StandardizedEntity, 'name', {
@@ -27,9 +27,9 @@ export function Standardized<T>(type?: Type<T>): Type<StandardResponse<T>> {
 export function StandardizedList<T>(
   type: Type<T>,
 ): Type<StandardResponse<StandardList<T>>> {
-  class EntityList<T> implements StandardList<T> {
+  class EntityList<D> implements StandardList<D> {
     @ApiProperty({ type, isArray: true })
-    data!: T[];
+    data!: D[];
 
     @ApiPropertyOptional({ example: 1 })
     count?: number;
@@ -48,7 +48,7 @@ export function StandardizedList<T>(
     value: `${type.name}List`,
   });
 
-  class StandardizedEntityList<T> implements StandardResponse<EntityList<T>> {
+  class StandardizedEntityList<D> implements StandardResponse<EntityList<D>> {
     @ApiProperty({ example: 0 })
     code!: number;
 
@@ -56,7 +56,7 @@ export function StandardizedList<T>(
     message!: string;
 
     @ApiProperty({ type: EntityList })
-    data!: EntityList<T>;
+    data!: EntityList<D>;
   }
 
   Object.defineProperty(StandardizedEntityList, 'name', {

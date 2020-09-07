@@ -7,14 +7,9 @@ import {
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import {
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiTags,
-} from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { StandardResponse } from '#models/responses/standard.response';
+import { ApiStandardResponse } from '#utils/decorator';
 import { StandardResponseInterceptor } from '#utils/interceptor';
 
 import { AuthService } from './auth.service';
@@ -32,7 +27,7 @@ export class AuthController {
 
   @Post('register')
   @ApiOperation({ summary: 'Register a new account' })
-  @ApiCreatedResponse({ type: StandardResponse })
+  @ApiStandardResponse({ status: HttpStatus.CREATED })
   async register(@Body() dto: RegisterDto): Promise<void> {
     await this.service.register(dto);
   }
@@ -40,7 +35,7 @@ export class AuthController {
   @Post('log-in')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Log in to the system' })
-  @ApiOkResponse({ type: LogInResponse })
+  @ApiStandardResponse({ type: LogInResponse })
   async login(@Body() dto: LogInDto): Promise<LogInResponse> {
     this.logger.debug(`Email [${dto.email}] login attempt`);
 
