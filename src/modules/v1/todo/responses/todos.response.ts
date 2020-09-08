@@ -1,9 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 import { TodoStatus } from '#entities/todo.entity';
-import { StandardizedList } from '#utils/standardizer';
 
-export class TodosInfo {
+export class TodosResponse {
   @ApiProperty({ format: 'date-time' })
   createdAt!: Date;
 
@@ -19,5 +18,3 @@ export class TodosInfo {
   @ApiProperty({ example: TodoStatus.Done })
   status!: TodoStatus;
 }
-
-export const TodosResponse = StandardizedList(TodosInfo);

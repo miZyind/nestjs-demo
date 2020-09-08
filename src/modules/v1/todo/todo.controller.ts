@@ -1,18 +1,17 @@
-import { Controller, UseGuards, UseInterceptors } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import {
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiOperation,
-  ApiSecurity,
-  ApiTags,
-} from '@nestjs/swagger';
+  Controller,
+  HttpStatus,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 
 import { AuthStrategy } from '#app/app.constant';
 import { Account } from '#entities/account.entity';
 import { Todo } from '#entities/todo.entity';
-import { StandardResponse } from '#models/responses/standard.response';
+import { ApiStandardListResponse, ApiStandardResponse } from '#utils/decorator';
 import {
   SafeCrudRequestInterceptor,
   StandardResponseInterceptor,
@@ -39,31 +38,31 @@ import { TodoService } from './todo.service';
     getOneBase: {
       decorators: [
         ApiOperation({ summary: 'Read one todo' }),
-        ApiOkResponse({ type: TodoResponse }),
+        ApiStandardResponse({ type: TodoResponse }),
       ],
     },
     getManyBase: {
       decorators: [
         ApiOperation({ summary: 'Read many todos' }),
-        ApiOkResponse({ type: TodosResponse }),
+        ApiStandardListResponse({ type: TodosResponse }),
       ],
     },
     createOneBase: {
       decorators: [
         ApiOperation({ summary: 'Create a new todo' }),
-        ApiCreatedResponse({ type: TodoResponse }),
+        ApiStandardResponse({ status: HttpStatus.CREATED, type: TodoResponse }),
       ],
     },
     updateOneBase: {
       decorators: [
         ApiOperation({ summary: 'Update an existing todo' }),
-        ApiOkResponse({ type: TodoResponse }),
+        ApiStandardResponse({ type: TodoResponse }),
       ],
     },
     deleteOneBase: {
       decorators: [
         ApiOperation({ summary: 'Delete an existing todo' }),
-        ApiOkResponse({ type: StandardResponse }),
+        ApiStandardResponse(),
       ],
     },
   },
