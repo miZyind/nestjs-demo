@@ -631,7 +631,7 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@4.1.0", "@typescript-eslint/experimental-utils@^4.0.1":
+"@typescript-eslint/experimental-utils@4.1.0", "@typescript-eslint/experimental-utils@^4.1.0":
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.1.0.tgz#263d7225645c09a411c8735eeffd417f50f49026"
   integrity sha512-paEYLA37iqRIDPeQwAmoYSiZ3PiHsaAc3igFeBTeqRHgPnHjHLJ9OGdmP6nwAkF65p2QzEsEBtpjNUBWByNWzA==
@@ -2274,12 +2274,12 @@ eslint-config-prettier@^6.11.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-mizyind@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-mizyind/-/eslint-plugin-mizyind-1.0.9.tgz#8252547d2ec665d014f82122274edd282f22e617"
-  integrity sha512-IvAXC2ChuoHSz2F4jGpQXvafRdazOotjzfHyLBA3vSJNTo55r71fKpkfStkOChr6xGI2tVgP2z2iHtg/y/pQ0Q==
+eslint-plugin-mizyind@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-mizyind/-/eslint-plugin-mizyind-1.1.0.tgz#a882bfbf4787fb905af5c08148401093cb5ae89e"
+  integrity sha512-rh58/XeqnB8zO/flV6pczJg+bwgEUpt/V9hsvu6/BC+Zl5wTp7fWMjKnl7TbqgYeRwPboG7qSD/6e5iFLhkWnw==
   dependencies:
-    "@typescript-eslint/experimental-utils" "^4.0.1"
+    "@typescript-eslint/experimental-utils" "^4.1.0"
     lodash.kebabcase "^4.1.1"
     tslib "^2.0.1"
 
