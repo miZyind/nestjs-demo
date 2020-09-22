@@ -17,8 +17,8 @@ import {
   StandardResponseInterceptor,
 } from '#utils/interceptor';
 
-import { CreateTodoDto } from './dtos/create-todo.dto';
-import { UpdateTodoDto } from './dtos/update-todo.dto';
+import { CreateTodoDTO } from './dtos/create-todo.dto';
+import { UpdateTodoDTO } from './dtos/update-todo.dto';
 import { TodoResponse } from './responses/todo.response';
 import { TodosResponse } from './responses/todos.response';
 import { TodoService } from './todo.service';
@@ -28,7 +28,7 @@ import { TodoService } from './todo.service';
 @UseGuards(AuthGuard(AuthStrategy.JWT))
 @Crud({
   model: { type: Todo },
-  dto: { create: CreateTodoDto, update: UpdateTodoDto },
+  dto: { create: CreateTodoDTO, update: UpdateTodoDTO },
   query: {
     join: { account: { eager: true, select: false, required: true } },
     alwaysPaginate: true,

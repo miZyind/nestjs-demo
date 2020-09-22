@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { TodoStatus } from '#entities/todo.entity';
 
-export class UpdateTodoDto {
+export class UpdateTodoDTO {
   @IsOptional()
   @IsNotEmpty()
   @IsString()

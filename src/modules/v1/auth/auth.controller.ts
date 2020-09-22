@@ -13,8 +13,8 @@ import { ApiStandardResponse } from '#utils/decorator';
 import { StandardResponseInterceptor } from '#utils/interceptor';
 
 import { AuthService } from './auth.service';
-import { LogInDto } from './dtos/log-in.dto';
-import { RegisterDto } from './dtos/register.dto';
+import { LogInDTO } from './dtos/log-in.dto';
+import { RegisterDTO } from './dtos/register.dto';
 import { LogInResponse } from './responses/log-in.response';
 
 @ApiTags('Auth')
@@ -28,7 +28,7 @@ export class AuthController {
   @Post('register')
   @ApiOperation({ summary: 'Register a new account' })
   @ApiStandardResponse({ status: HttpStatus.CREATED })
-  async register(@Body() dto: RegisterDto): Promise<void> {
+  async register(@Body() dto: RegisterDTO): Promise<void> {
     await this.service.register(dto);
   }
 
@@ -36,7 +36,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: 'Log in to the system' })
   @ApiStandardResponse({ type: LogInResponse })
-  async login(@Body() dto: LogInDto): Promise<LogInResponse> {
+  async login(@Body() dto: LogInDTO): Promise<LogInResponse> {
     this.logger.debug(`Email [${dto.email}] login attempt`);
 
     return this.service.validateAndSignToken(dto);
