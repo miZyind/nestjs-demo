@@ -22,12 +22,12 @@
     "@nestjs/microservices": "^7.4.4",
     "@nestjs/passport": "^7.1.0",
     "@nestjs/platform-express": "^7.4.4",
-    "@nestjs/swagger": "^4.6.0",
-    "@nestjs/typeorm": "^7.1.3",
+    "@nestjs/swagger": "^4.6.1",
+    "@nestjs/typeorm": "^7.1.4",
     "@nestjsx/crud": "^4.6.2",
     "@nestjsx/crud-request": "^4.6.2",
     "@nestjsx/crud-typeorm": "^4.6.2",
-    "amqp-connection-manager": "^3.2.0",
+    "amqp-connection-manager": "^3.2.1",
     "amqplib": "^0.6.0",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.3.1",
@@ -39,28 +39,28 @@
     "rxjs": "^6.6.3",
     "swagger-ui-express": "^4.1.4",
     "tslib": "^2.0.1",
-    "typeorm": "^0.2.25"
+    "typeorm": "^0.2.26"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.1.2",
-    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@nestjs/cli": "^7.5.1",
-    "@nestjs/schematics": "^7.1.1",
+    "@nestjs/schematics": "^7.1.2",
     "@types/amqplib": "^0.5.13",
     "@types/bcrypt": "^3.0.0",
-    "@types/node": "^14.6.4",
+    "@types/node": "^14.11.2",
     "@types/passport": "^1.0.4",
     "@types/passport-jwt": "^3.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.1.0",
-    "@typescript-eslint/parser": "^4.1.0",
-    "eslint": "^7.8.1",
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-mizyind": "^1.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
-    "prettier": "^2.1.1",
+    "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   },
   "eslintConfig": {
     "env": {
@@ -82,7 +82,10 @@
       "prettier/@typescript-eslint",
       "plugin:prettier/recommended",
       "plugin:mizyind/recommended"
-    ]
+    ],
+    "rules": {
+      "@typescript-eslint/comma-dangle": "off"
+    }
   },
   "prettier": {
     "singleQuote": true,
