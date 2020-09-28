@@ -53,9 +53,9 @@
     "@types/passport-jwt": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
-    "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-mizyind": "^1.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-mizyind": "^1.1.1",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.3.0",
     "prettier": "^2.1.2",
@@ -82,10 +82,7 @@
       "prettier/@typescript-eslint",
       "plugin:prettier/recommended",
       "plugin:mizyind/recommended"
-    ],
-    "rules": {
-      "@typescript-eslint/comma-dangle": "off"
-    }
+    ]
   },
   "prettier": {
     "singleQuote": true,
