@@ -20,7 +20,6 @@ import {
 import { CreateTodoDTO } from './dtos/create-todo.dto';
 import { UpdateTodoDTO } from './dtos/update-todo.dto';
 import { TodoResponse } from './responses/todo.response';
-import { TodosResponse } from './responses/todos.response';
 import { TodoService } from './todo.service';
 
 @ApiTags('Todo')
@@ -44,7 +43,7 @@ import { TodoService } from './todo.service';
     getManyBase: {
       decorators: [
         ApiOperation({ summary: 'Read many todos' }),
-        ApiStandardListResponse({ type: TodosResponse }),
+        ApiStandardListResponse({ type: TodoResponse }),
       ],
     },
     createOneBase: {

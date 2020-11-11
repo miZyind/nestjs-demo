@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { Account, AccountRole } from '#entities/account.entity';
 
-import { AccountError } from './account.error';
+import { AccountError } from './account.constant';
 
 @Injectable()
 export class AccountService {

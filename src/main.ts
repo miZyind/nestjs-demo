@@ -4,7 +4,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from '#app/app.module';
 import Config, { AppConfig, RMQConfig, SwaggerConfig } from '#configs';
-import { BaseExceptionFilter } from '#utils/exception-filter';
+import { BaseExceptionFilter } from '#utils/base-exception-filter';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);

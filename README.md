@@ -2,18 +2,18 @@
 
 [![Docker](https://img.shields.io/badge/docker-2496ed?style=for-the-badge&logo=docker&logoColor=fff)](https://www.docker.com)
 [![NodeJS](https://img.shields.io/badge/->=14-339933?style=for-the-badge&label=&logo=node.js&logoColor=fff)](https://nodejs.org)
+[![Yarn](https://img.shields.io/badge/-~=1.22-2c8ebb?style=for-the-badge&label=&logo=yarn&logoColor=fff)](https://classic.yarnpkg.com)
 [![MySQL](https://img.shields.io/badge/->=8-4479a1?style=for-the-badge&label=&logo=mysql&logoColor=fff)](https://www.mysql.com)
 [![NestJS](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/@nestjs/core?style=for-the-badge&label=&color=e0234e&logo=nestjs)](https://nestjs.com)
 [![TypeScript](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/typescript?style=for-the-badge&label=&color=007acc&logo=typescript)](https://www.typescriptlang.org)
-[![ESLint](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/eslint?style=for-the-badge&label=&color=4b32c3&logo=eslint&logoColor=fff)](https://eslint.org)
-[![Prettier](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=fff)](https://prettier.io)
-[![License](https://img.shields.io/badge/LIC.-mit-404040?style=for-the-badge&labelColor=000)](https://github.com/miZyind/nestjs-demo/blob/master/LICENSE)
+[![ESLint](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/eslint?style=for-the-badge&label=&color=4b32c3&logo=eslint&logoColor=fff)](https://eslint.org)
+[![Prettier](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=fff)](https://prettier.io)
 
 ## 💠 Requirement
 
 - NodeJS >= 14
+- Yarn ~= 1.22
 - MySQL >= 8
-  - Auto migration: true
 
 ## 🔮 Usage
 
@@ -61,10 +61,10 @@ $ node dist/main.js
 - **[RxJS](https://rxjs.dev)**- A reactive programming library for JavaScript.
 - **[Prettier](https://prettier.io)** - An opinionated code formatter.
 
-## Author
+## 🖋 Author
 
 miZyind <mizyind@gmail.com>
 
-## LICENSE
+## 📇 License
 
 Licensed under the [MIT](LICENSE) License.

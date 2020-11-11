@@ -1,4 +1,4 @@
-/* TSConfig Reference https://www.typescriptlang.org/docs */
+/* TSConfig Reference https://www.typescriptlang.org/tsconfig */
 {
   /* File Inclusion */
   "include": ["src", "typings"],

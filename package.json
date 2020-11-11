@@ -9,20 +9,21 @@
     "lint": "eslint src --max-warnings 0",
     "dev": "rimraf dist && nest start --path tsconfig.json --watch",
     "build": "rimraf dist && yarn lint && nest build --path tsconfig.json",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "engines": {
     "node": ">=14"
   },
   "dependencies": {
-    "@nestjs/common": "^7.4.4",
+    "@nestjs/common": "^7.5.1",
     "@nestjs/config": "^0.5.0",
-    "@nestjs/core": "^7.4.4",
-    "@nestjs/jwt": "^7.1.0",
-    "@nestjs/microservices": "^7.4.4",
+    "@nestjs/core": "^7.5.1",
+    "@nestjs/jwt": "^7.2.0",
+    "@nestjs/microservices": "^7.5.1",
     "@nestjs/passport": "^7.1.0",
-    "@nestjs/platform-express": "^7.4.4",
-    "@nestjs/swagger": "^4.6.1",
+    "@nestjs/platform-express": "^7.5.1",
+    "@nestjs/swagger": "^4.7.2",
     "@nestjs/typeorm": "^7.1.4",
     "@nestjsx/crud": "^4.6.2",
     "@nestjsx/crud-request": "^4.6.2",
@@ -38,50 +39,27 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.3",
     "swagger-ui-express": "^4.1.4",
-    "tslib": "^2.0.1",
-    "typeorm": "^0.2.26"
+    "typeorm": "^0.2.29"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@nestjs/cli": "^7.5.1",
-    "@nestjs/schematics": "^7.1.2",
-    "@types/amqplib": "^0.5.13",
+    "@nestjs/cli": "^7.5.2",
+    "@nestjs/schematics": "^7.2.1",
+    "@types/amqplib": "^0.5.16",
     "@types/bcrypt": "^3.0.0",
-    "@types/node": "^14.11.2",
+    "@types/node": "^14.14.7",
     "@types/passport": "^1.0.4",
     "@types/passport-jwt": "^3.0.3",
-    "@typescript-eslint/eslint-plugin": "^4.2.0",
-    "@typescript-eslint/parser": "^4.2.0",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-mizyind": "^1.1.1",
-    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-mizyind": "^2.0.6",
     "husky": "^4.3.0",
-    "prettier": "^2.1.2",
     "rimraf": "^3.0.2",
-    "typescript": "^4.0.3"
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
   },
   "eslintConfig": {
-    "env": {
-      "node": true,
-      "es6": true
-    },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "tsconfig.json"
-    },
-    "plugins": [
-      "@typescript-eslint",
-      "prettier",
-      "mizyind"
-    ],
     "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/all",
-      "prettier/@typescript-eslint",
-      "plugin:prettier/recommended",
-      "plugin:mizyind/recommended"
+      "plugin:mizyind/base"
     ]
   },
   "prettier": {

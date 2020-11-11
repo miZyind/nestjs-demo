@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { hasValue } from '#utils/guarder';
 
 import { AccountService } from '../account/account.service';
-import { AuthError } from './account.error';
+import { AuthError } from './auth.constant';
 import { LogInDTO } from './dtos/log-in.dto';
 import { RegisterDTO } from './dtos/register.dto';
 import { LogInResponse } from './responses/log-in.response';

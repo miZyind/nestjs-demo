@@ -6,12 +6,14 @@ import {
   ExceptionFilter,
   HttpException,
   HttpStatus,
+  NotFoundException,
 } from '@nestjs/common';
 
 enum FilteredMessage {
   InternalServerError = 'Internal server error, please contact the developer',
   AuthorizationError = 'Authorization error, please provide a valid token',
   ValidationError = 'Validation error, please check the request parameters',
+  APINotFoundError = 'API not found error, please send the correct request',
 }
 
 interface UnfilteredBody {
@@ -44,6 +46,9 @@ export class BaseExceptionFilter implements ExceptionFilter {
       const { statusCode, message } = exception.getResponse() as UnfilteredBody;
 
       switch (statusCode) {
+        case HttpStatus.NOT_FOUND:
+          filteredBody.message = FilteredMessage.APINotFoundError;
+          break;
         case HttpStatus.UNAUTHORIZED:
           filteredBody.message = FilteredMessage.AuthorizationError;
           break;
@@ -62,6 +67,10 @@ export class BaseExceptionFilter implements ExceptionFilter {
       }
     }
 
+    if (!(exception instanceof NotFoundException)) {
+      // eslint-disable-next-line no-console -- intentionally print native error msg
+      console.error('[BaseExceptionFilter]', exception);
+    }
     response.status(status).json(filteredBody);
   }
 }
