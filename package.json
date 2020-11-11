@@ -60,7 +60,16 @@
   "eslintConfig": {
     "extends": [
       "plugin:mizyind/base"
-    ]
+    ],
+    "rules": {
+      "@typescript-eslint/consistent-type-imports": [
+        "error",
+        {
+          "prefer": "no-type-imports",
+          "disallowTypeAnnotations": false
+        }
+      ]
+    }
   },
   "prettier": {
     "singleQuote": true,
