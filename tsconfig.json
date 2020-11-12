@@ -5,12 +5,13 @@
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     /* Project Options */
+    "target": "ES2017",
+    "module": "commonjs",
     "importHelpers": true,
     "isolatedModules": true,
-    "module": "commonjs",
     "outDir": "dist",
     "removeComments": true,
-    "target": "ES2017",
+    "lib": ["ES2019.Array"],
     /* Strict Checks */
     "strict": true,
     /* Module Resolution */
@@ -29,7 +30,7 @@
       "#app/*": ["src/modules/app/*"],
       "#v1": ["src/modules/v1"]
     },
-    "typeRoots": ["node_modules/@types", "typings"],
+    "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -42,7 +43,6 @@
     "forceConsistentCasingInFileNames": true,
     "preserveConstEnums": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "lib": ["ES2019.Array"]
+    "skipLibCheck": true
   }
 }
