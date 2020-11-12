@@ -26,12 +26,12 @@
   - **[@nestjs/passport](https://github.com/nestjs/passport)** - .Passport module for Nest.
   - **[@nestjs/schematics](https://github.com/nestjs/schematics)** - Nest architecture element generation based on Angular schematics.
   - **[@nestjs/platform-express](https://www.npmjs.com/package/@nestjs/platform-express)** - Under the hood, Nest makes use of Express.
-  - **[@nestjs/microservices](https://www.npmjs.com/package/@nestjs/microservices)** - In Nest, a microservice is fundamentally an application that uses a different transport layer.
+  - **[@nestjs/microservices](https://www.npmjs.com/package/@nestjs/microservices)** - In Nest, a microservice is fundamentally an application.
   - **[@nestjsx/crud](https://github.com/nestjsx/crud)** - Nest CRUD for RESTful APIs.
-  - **[@nestjsx/crud-request](https://www.npmjs.com/package/@nestjsx/crud-request)** - Request builder/parser package for handling and validating params on a backend side.
-  - **[@nestjsx/crud-typeorm](https://www.npmjs.com/package/@nestjsx/crud-typeorm)** - Provides base TypeOrmCrudService with methods for CRUD database operations.
+  - **[@nestjsx/crud-request](https://www.npmjs.com/package/@nestjsx/crud-request)** - Request builder/parser for handling and validating params on a backend side.
+  - **[@nestjsx/crud-typeorm](https://www.npmjs.com/package/@nestjsx/crud-typeorm)** - Provides methods for CRUD database operations.
 - **[Swagger](https://swagger.io)** - API Documentation & Design Tools for Teams.
-  - **[swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)** - Adds middleware to your express app to serve the Swagger UI bound to your Swagger document.
+  - **[swagger-ui-express](https://github.com/scottie1984/swagger-ui-express)** - Adds middleware to express app to serve the Swagger UI.
 - **[RabbitMQ](https://www.rabbitmq.com)** - Messaging that just works.
   - **[amqplib](https://github.com/squaremo/amqp.node)** - AMQP 0-9-1 library and client for NodeJS.
   - **[amqp-connection-manager](https://github.com/jwalton/node-amqp-connection-manager)** - Auto-reconnect and round robin support for amqplib.
@@ -43,7 +43,7 @@
 - **[TypeORM](https://typeorm.io)** - Amazing ORM for TS and JS.
 - **[Reflect Metadata](https://github.com/rbuckton/reflect-metadata)** - Prototype for a Metadata Reflection API for ECMAScript.
 - **[Class Validator](https://github.com/typestack/class-validator)** - Decorator-based property validation for classes.
-- **[Class Transformer](https://github.com/typestack/class-transformer)** - Decorator-based transformation, serialization, and deserialization between objects and classes.
+- **[Class Transformer](https://github.com/typestack/class-transformer)** - Decorator-based transform-, serializ-, and deserialization between objects and classes.
 - **[TypeScript](https://www.typescriptlang.org)** - Typed JS at Any Scale.
   - **[ts-node](https://github.com/TypeStrong/ts-node)** - TS execution and REPL for NodeJS.
   - **[tslib](https://github.com/microsoft/tslib)** - Runtime library for TypeScript helpers.
