@@ -28,19 +28,24 @@ export function setup(
     },
     customCss: `
       .swagger-ui .topbar { display: none }
-      .swagger-ui .scheme-container .schemes>label { display: none }
+      .swagger-ui .information-container .info { margin: 20px 0 }
       .swagger-ui .scheme-container {
         padding: unset;
         background: unset;
         box-shadow: unset;
-        margin: -85px 0 0 0;
+        margin: -60px 0 0 0;
         padding-bottom: 30px;
       }
       .swagger-ui .download-contents { display: none }
       .swagger-ui .copy-to-clipboard {
-        position: absolute;
-        bottom: 10px;
+        bottom: 5px;
         right: 10px;
+        width: 20px;
+        height: 20px;
+      }
+      .swagger-ui .copy-to-clipboard button {
+        padding-left: 18px;
+        height: 18px;
       }
     `,
     customSiteTitle: `${name} API`,
