@@ -29,6 +29,8 @@ export class AuthController {
   @ApiOperation({ summary: 'Register a new account' })
   @ApiStandardResponse({ status: HttpStatus.CREATED })
   async register(@Body() dto: RegisterDTO): Promise<void> {
+    this.logger.debug(`Email [${dto.email}] registered`);
+
     await this.service.register(dto);
   }
 
@@ -37,8 +39,6 @@ export class AuthController {
   @ApiOperation({ summary: 'Log in to the system' })
   @ApiStandardResponse({ type: LogInResponse })
   async login(@Body() dto: LogInDTO): Promise<LogInResponse> {
-    this.logger.debug(`Email [${dto.email}] login attempt`);
-
     return this.service.validateAndSignToken(dto);
   }
 }

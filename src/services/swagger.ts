@@ -7,9 +7,9 @@ import {
   SwaggerModule,
 } from '@nestjs/swagger';
 
-import { AuthStrategy } from '#app/app.constant';
 import { AppConfig } from '#configs';
 import { ModulesV1 } from '#v1';
+import { AuthStrategy as AuthStrategyV1 } from '#v1/auth/auth.constant';
 
 export function setup(
   app: INestApplication,
@@ -19,7 +19,7 @@ export function setup(
     .setTitle(`${name} API`)
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
-      AuthStrategy.JWT,
+      AuthStrategyV1.JWT,
     );
   const options: SwaggerCustomOptions = {
     swaggerOptions: {

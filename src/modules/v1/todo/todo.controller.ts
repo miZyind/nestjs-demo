@@ -8,7 +8,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 
-import { AuthStrategy } from '#app/app.constant';
 import { Account } from '#entities/account.entity';
 import { Todo } from '#entities/todo.entity';
 import { ApiStandardListResponse, ApiStandardResponse } from '#utils/decorator';
@@ -16,6 +15,7 @@ import {
   SafeCrudRequestInterceptor,
   StandardResponseInterceptor,
 } from '#utils/interceptor';
+import { AuthStrategy } from '#v1/auth/auth.constant';
 
 import { CreateTodoDTO } from './dtos/create-todo.dto';
 import { UpdateTodoDTO } from './dtos/update-todo.dto';
