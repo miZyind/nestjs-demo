@@ -6,9 +6,10 @@
   "author": "miZyind <mizyind@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "clean": "rimraf dist",
     "lint": "eslint src --max-warnings 0",
-    "dev": "rimraf dist && nest start --path tsconfig.json --watch",
-    "build": "rimraf dist && yarn lint && nest build --path tsconfig.json",
+    "dev": "yarn clean && nest start --path tsconfig.json --watch",
+    "build": "yarn clean && yarn lint && nest build --path tsconfig.json",
     "start": "node dist/main.js",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
     "mg": "yarn typeorm migration:generate -n"
