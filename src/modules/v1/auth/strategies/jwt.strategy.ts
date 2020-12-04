@@ -1,16 +1,17 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 
 import Config, { AppConfig } from '#configs';
-import { AccountRole } from '#entities/account.entity';
+import { AccountRole, AccountStatus } from '#entities/account.entity';
 
-import { AuthStrategy } from '../auth.constant';
+import { AuthError, AuthStrategy } from '../auth.constant';
 
 export interface JWTPayload {
   uuid: string;
+  status: AccountStatus;
   role: AccountRole;
   email: string;
 }
@@ -26,6 +27,15 @@ export class JWTStrategy extends PassportStrategy(Strategy, AuthStrategy.JWT) {
   }
 
   validate(payload: JWTPayload): JWTPayload {
-    return payload;
+    switch (payload.status) {
+      case AccountStatus.ApprovePending:
+        throw new BadRequestException(AuthError.ThisAccountHasNotBeenApproved);
+      case AccountStatus.Approved:
+        return payload;
+      case AccountStatus.Banned:
+        throw new BadRequestException(AuthError.ThisAccountHasBeenBanned);
+      default:
+        throw new BadRequestException(AuthError.InvalidLoginCredentials);
+    }
   }
 }

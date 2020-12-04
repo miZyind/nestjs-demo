@@ -26,6 +26,7 @@ export class AuthService {
     if (hasValue(account) && (await account.comparePassword(attempt))) {
       const token = await this.jwtService.signAsync({
         uuid: account.uuid,
+        status: account.status,
         role: account.role,
         email: account.email,
       });
