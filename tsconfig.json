@@ -1,7 +1,7 @@
 /* TSConfig Reference https://www.typescriptlang.org/tsconfig */
 {
   /* File Inclusion */
-  "include": ["src", "typings"],
+  "include": ["src", "@types"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     /* Project Options */
@@ -28,7 +28,8 @@
       "#utils/*": ["src/utils/*"],
       /* NestJS Modules */
       "#app/*": ["src/modules/app/*"],
-      "#v1": ["src/modules/v1"]
+      "#v1": ["src/modules/v1"],
+      "#v1/*": ["src/modules/v1/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
