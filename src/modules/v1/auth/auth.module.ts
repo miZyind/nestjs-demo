@@ -4,8 +4,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
 import Config, { AppConfig } from '#configs';
+import { AccountModule } from '#v1/account/account.module';
 
-import { AccountModule } from '../account/account.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JWTStrategy } from './strategies/jwt.strategy';

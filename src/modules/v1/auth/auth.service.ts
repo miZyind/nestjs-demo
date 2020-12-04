@@ -2,8 +2,8 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { hasValue } from '#utils/guarder';
+import { AccountService } from '#v1/account/account.service';
 
-import { AccountService } from '../account/account.service';
 import { AuthError } from './auth.constant';
 import { LogInDTO } from './dtos/log-in.dto';
 import { RegisterDTO } from './dtos/register.dto';
