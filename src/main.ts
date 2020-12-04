@@ -5,6 +5,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from '#app/app.module';
 import Config, { AppConfig, RMQConfig, SwaggerConfig } from '#configs';
 import { BaseExceptionFilter } from '#utils/base-exception-filter';
+import { StandardResponseInterceptor } from '#utils/interceptor';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +20,7 @@ async function bootstrap(): Promise<void> {
   app.setGlobalPrefix(appConf.basePath);
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
   app.useGlobalFilters(new BaseExceptionFilter());
+  app.useGlobalInterceptors(new StandardResponseInterceptor());
 
   if (rmqConf.enable) {
     (await import('./services/rmq')).setup(app, rmqConf.options);

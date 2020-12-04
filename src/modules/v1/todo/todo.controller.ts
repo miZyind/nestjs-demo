@@ -11,10 +11,7 @@ import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
 import { Account } from '#entities/account.entity';
 import { Todo } from '#entities/todo.entity';
 import { ApiStandardListResponse, ApiStandardResponse } from '#utils/decorator';
-import {
-  SafeCrudRequestInterceptor,
-  StandardResponseInterceptor,
-} from '#utils/interceptor';
+import { SafeCrudRequestInterceptor } from '#utils/interceptor';
 import { AuthStrategy } from '#v1/auth/auth.constant';
 
 import { CreateTodoDTO } from './dtos/create-todo.dto';
@@ -73,7 +70,7 @@ import { TodoService } from './todo.service';
   persist: ({ uuid }: Account) => ({ account: { uuid } }),
 })
 @Controller('v1/todos')
-@UseInterceptors(SafeCrudRequestInterceptor, StandardResponseInterceptor)
+@UseInterceptors(SafeCrudRequestInterceptor)
 export class TodoController implements CrudController<Todo> {
   constructor(readonly service: TodoService) {}
 }
