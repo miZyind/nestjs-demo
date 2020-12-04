@@ -4,16 +4,24 @@ import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
+  ForbiddenException,
   HttpException,
   HttpStatus,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 
 enum FilteredMessage {
-  InternalServerError = 'Internal server error, please contact the developer',
-  AuthorizationError = 'Authorization error, please provide a valid token',
+  // 400: 10000
   ValidationError = 'Validation error, please check the request parameters',
+  // 401: -1
+  AuthorizationError = 'Authorization error, please provide a valid token',
+  // 403: -1
+  PermissionError = 'Permission error, please check that you have the correct permissions',
+  // 404: -1
   APINotFoundError = 'API not found error, please send the correct request',
+  // 500: -1
+  InternalServerError = 'Internal server error, please contact the developers',
 }
 
 interface UnfilteredBody {
@@ -29,10 +37,10 @@ interface FilteredBody {
 
 @Catch()
 export class BaseExceptionFilter implements ExceptionFilter {
-  catch(exception: unknown, host: ArgumentsHost): void {
+  catch<T extends ObjectConstructor>(error: T, host: ArgumentsHost): void {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
-    const isHttpException = exception instanceof HttpException;
+    const isHttpException = error instanceof HttpException;
     const status = isHttpException
       ? HttpStatus.BAD_REQUEST
       : HttpStatus.INTERNAL_SERVER_ERROR;
@@ -42,16 +50,10 @@ export class BaseExceptionFilter implements ExceptionFilter {
       data: null,
     };
 
-    if (exception instanceof HttpException) {
-      const { statusCode, message } = exception.getResponse() as UnfilteredBody;
+    if (error instanceof HttpException) {
+      const { statusCode, message } = error.getResponse() as UnfilteredBody;
 
       switch (statusCode) {
-        case HttpStatus.NOT_FOUND:
-          filteredBody.message = FilteredMessage.APINotFoundError;
-          break;
-        case HttpStatus.UNAUTHORIZED:
-          filteredBody.message = FilteredMessage.AuthorizationError;
-          break;
         case HttpStatus.BAD_REQUEST:
           if (Array.isArray(message)) {
             filteredBody.code = 10000;
@@ -61,16 +63,30 @@ export class BaseExceptionFilter implements ExceptionFilter {
             filteredBody.message = message;
           }
           break;
+        case HttpStatus.UNAUTHORIZED:
+          filteredBody.message = FilteredMessage.AuthorizationError;
+          break;
+        case HttpStatus.FORBIDDEN:
+          filteredBody.message = FilteredMessage.PermissionError;
+          break;
+        case HttpStatus.NOT_FOUND:
+          filteredBody.message = FilteredMessage.APINotFoundError;
+          break;
         default:
-          filteredBody.message = message as string;
           break;
       }
     }
 
-    if (!(exception instanceof NotFoundException)) {
-      // eslint-disable-next-line no-console -- intentionally print native error msg
-      console.error('[BaseExceptionFilter]', exception);
+    switch (error.constructor) {
+      case UnauthorizedException:
+      case ForbiddenException:
+      case NotFoundException:
+        break;
+      default:
+        console.error('[BaseExceptionFilter]', error);
+        break;
     }
+
     response.status(status).json(filteredBody);
   }
 }
