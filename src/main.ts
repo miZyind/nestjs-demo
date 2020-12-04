@@ -20,17 +20,14 @@ async function bootstrap(): Promise<void> {
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
   app.useGlobalFilters(new BaseExceptionFilter());
 
-  // Setup RabbitMQ service
   if (rmqConf.enable) {
     (await import('./services/rmq')).setup(app, rmqConf.options);
   }
 
-  // Setup Swagger service
   if (swaggerConf.enable) {
     (await import('./services/swagger')).setup(app, appConf);
   }
 
-  // Launch app
   await app.startAllMicroservicesAsync();
   await app.listen(appConf.port, appConf.host);
 }
