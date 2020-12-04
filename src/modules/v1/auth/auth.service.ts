@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
+import { AccountStatus } from '#entities/account.entity';
 import { hasValue } from '#utils/guarder';
 import { AccountService } from '#v1/account/account.service';
 
@@ -26,14 +27,24 @@ export class AuthService {
     if (hasValue(account) && (await account.comparePassword(attempt))) {
       const token = await this.jwtService.signAsync({
         uuid: account.uuid,
-        status: account.status,
         role: account.role,
         email: account.email,
       });
 
-      this.logger.debug(`Account [${email}] logged in`);
+      switch (account.status) {
+        case AccountStatus.ApprovePending:
+          throw new BadRequestException(
+            AuthError.ThisAccountHasNotBeenApproved,
+          );
+        case AccountStatus.Approved:
+          this.logger.debug(`Account [${email}] logged in`);
 
-      return { token };
+          return { token };
+        case AccountStatus.Banned:
+          throw new BadRequestException(AuthError.ThisAccountHasBeenBanned);
+        default:
+          throw new BadRequestException(AuthError.InvalidLoginCredentials);
+      }
     }
 
     throw new BadRequestException(AuthError.InvalidLoginCredentials);
