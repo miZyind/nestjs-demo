@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { hasValue } from '#utils/guarder';
@@ -6,19 +6,16 @@ import { AccountService } from '#v1/account/account.service';
 
 import { AuthError } from './auth.constant';
 import { LogInDTO } from './dtos/log-in.dto';
-import { RegisterDTO } from './dtos/register.dto';
 import { LogInResponse } from './responses/log-in.response';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger(AuthService.name);
+
   constructor(
     private readonly accountService: AccountService,
     private readonly jwtService: JwtService,
   ) {}
-
-  async register({ email, password }: RegisterDTO): Promise<void> {
-    await this.accountService.register(email, password);
-  }
 
   async validateAndSignToken({
     email,
@@ -32,6 +29,8 @@ export class AuthService {
         role: account.role,
         email: account.email,
       });
+
+      this.logger.debug(`Account [${email}] logged in`);
 
       return { token };
     }
