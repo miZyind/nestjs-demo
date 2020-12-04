@@ -15,6 +15,7 @@ import { StandardResponse } from '#models';
 import { hasValue } from './guarder';
 
 type InterceptedRequest = Request & {
+  // eslint-disable-next-line @typescript-eslint/naming-convention -- NestJS' consistent key name
   NESTJSX_PARSED_CRUD_REQUEST_KEY?: CrudRequest;
 };
 
