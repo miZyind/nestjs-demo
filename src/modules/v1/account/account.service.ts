@@ -1,17 +1,20 @@
 import { Repository } from 'typeorm';
 
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Account, AccountRole } from '#entities/account.entity';
+import { Account, AccountRole, AccountStatus } from '#entities/account.entity';
 
 import { AccountError } from './account.constant';
+import { CreateDTO } from './dtos/create.dto';
 
 @Injectable()
 export class AccountService {
+  private readonly logger = new Logger(AccountService.name);
+
   constructor(@InjectRepository(Account) protected repo: Repository<Account>) {}
 
-  async register(email: string, password: string): Promise<void> {
+  async create({ email, password }: CreateDTO): Promise<void> {
     if (await this.repo.count({ email })) {
       throw new BadRequestException(AccountError.ThisEmailAlreadyExists);
     }
@@ -23,6 +26,16 @@ export class AccountService {
     });
 
     await this.repo.save(entity);
+
+    this.logger.debug(`Account [${email}] registered`);
+  }
+
+  async approve(uuid: string): Promise<void> {
+    await this.repo.update(uuid, { status: AccountStatus.Approved });
+  }
+
+  async reject(uuid: string): Promise<void> {
+    await this.repo.update(uuid, { status: AccountStatus.Banned });
   }
 
   async findByEmail(email: string): Promise<Account | undefined> {
