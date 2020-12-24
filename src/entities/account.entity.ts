@@ -26,7 +26,7 @@ export enum AccountRole {
 @Entity()
 export class Account extends Base {
   @PrimaryGeneratedColumn('uuid')
-  uuid!: string;
+  readonly uuid!: string;
 
   @Column({
     type: 'enum',

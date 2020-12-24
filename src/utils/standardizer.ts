@@ -1,7 +1,7 @@
 import { Type } from '@nestjs/common';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-import { StandardList, StandardResponse } from '#models';
+import { StandardList, StandardResponse } from '#models/standard';
 
 export function Standardized<T>(type?: Type<T>): Type<StandardResponse<T>> {
   class StandardizedEntity<D> implements StandardResponse<D> {

@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CrudRequest, CrudRequestInterceptor } from '@nestjsx/crud';
 
-import { StandardResponse } from '#models';
+import { StandardResponse } from '#models/standard';
 
 import { hasValue } from './guarder';
 

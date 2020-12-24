@@ -17,7 +17,7 @@ export enum TodoStatus {
 @Entity()
 export class Todo extends Base {
   @PrimaryGeneratedColumn('uuid')
-  uuid!: string;
+  readonly uuid!: string;
 
   @Column('text')
   message!: string;
