@@ -14,6 +14,9 @@ import { StandardResponse } from '#models/standard';
 
 import { hasValue } from './guarder';
 
+export const DEFAULT_PAGINATION_LIMIT = 8;
+export const DEFAULT_PAGINATION_PAGE = 1;
+
 type InterceptedRequest = Request & {
   // eslint-disable-next-line @typescript-eslint/naming-convention -- NestJS' consistent key name
   NESTJSX_PARSED_CRUD_REQUEST_KEY?: CrudRequest;
@@ -33,16 +36,14 @@ export class SafeCrudRequestInterceptor extends CrudRequestInterceptor {
       const {
         parsed: { limit, page },
       } = req.NESTJSX_PARSED_CRUD_REQUEST_KEY;
-      const DEFAULT_LIMIT = 8;
-      const DEFAULT_PAGE = 1;
 
       req.NESTJSX_PARSED_CRUD_REQUEST_KEY.parsed.limit = limit
         ? limit
-        : DEFAULT_LIMIT;
+        : DEFAULT_PAGINATION_LIMIT;
 
       req.NESTJSX_PARSED_CRUD_REQUEST_KEY.parsed.page = page
         ? page
-        : DEFAULT_PAGE;
+        : DEFAULT_PAGINATION_PAGE;
     }
 
     return next.handle();
