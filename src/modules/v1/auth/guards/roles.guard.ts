@@ -4,7 +4,7 @@ import { AuthGuard, IAuthGuard, Type } from '@nestjs/passport';
 import { AccountRole } from '#entities/account.entity';
 
 import { AuthStrategy } from '../auth.constant';
-import { JWTPayload } from '../strategies/jwt.strategy';
+import { ValidatedAccount } from '../strategies/jwt.strategy';
 
 export function RolesGuard(...roles: AccountRole[]): Type<IAuthGuard> {
   @Injectable()
@@ -15,7 +15,7 @@ export function RolesGuard(...roles: AccountRole[]): Type<IAuthGuard> {
       if (isVerified) {
         const {
           user: { role },
-        } = context.switchToHttp().getRequest<{ user: JWTPayload }>();
+        } = context.switchToHttp().getRequest<{ user: ValidatedAccount }>();
 
         return roles.includes(role);
       }

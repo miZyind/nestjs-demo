@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { FindOneOptions, Repository } from 'typeorm';
 
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -38,7 +38,24 @@ export class AccountService {
     await this.repo.update(uuid, { status: AccountStatus.Banned });
   }
 
-  async findByEmail(email: string): Promise<Account | undefined> {
-    return this.repo.findOne({ email });
+  async findOne(
+    options: FindOneOptions<Account>,
+  ): Promise<Account | undefined> {
+    return this.repo.findOne(options);
+  }
+
+  validateStatus(status: AccountStatus): void {
+    switch (status) {
+      case AccountStatus.ApprovePending:
+        throw new BadRequestException(
+          AccountError.ThisAccountHasNotBeenApproved,
+        );
+      case AccountStatus.Approved:
+        break;
+      case AccountStatus.Banned:
+        throw new BadRequestException(AccountError.ThisAccountHasBeenBanned);
+      default:
+        throw new BadRequestException(AccountError.InvalidAccountStatus);
+    }
   }
 }

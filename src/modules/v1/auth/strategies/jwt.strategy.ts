@@ -8,16 +8,20 @@ import Config, { AppConfig } from '#configs';
 import { AccountRole } from '#entities/account.entity';
 
 import { AuthStrategy } from '../auth.constant';
+import { AuthService } from '../auth.service';
 
 export interface JWTPayload {
   uuid: string;
-  role: AccountRole;
   email: string;
+}
+
+export interface ValidatedAccount extends JWTPayload {
+  role: AccountRole;
 }
 
 @Injectable()
 export class JWTStrategy extends PassportStrategy(Strategy, AuthStrategy.JWT) {
-  constructor(config: ConfigService) {
+  constructor(private readonly service: AuthService, config: ConfigService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
@@ -25,7 +29,9 @@ export class JWTStrategy extends PassportStrategy(Strategy, AuthStrategy.JWT) {
     });
   }
 
-  validate(payload: JWTPayload): JWTPayload {
-    return payload;
+  async validate(payload: JWTPayload): Promise<ValidatedAccount> {
+    const role = await this.service.validateAccountAndGetRole(payload.uuid);
+
+    return { ...payload, role };
   }
 }

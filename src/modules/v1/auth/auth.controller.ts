@@ -16,6 +16,6 @@ export class AuthController {
   @ApiOperation({ summary: 'Log in to the system' })
   @ApiStandardResponse({ type: LogInResponse })
   async login(@Body() dto: LogInDTO): Promise<LogInResponse> {
-    return this.service.validateAndSignToken(dto);
+    return this.service.validateAttemptAndSignToken(dto);
   }
 }
