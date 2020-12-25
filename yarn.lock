@@ -3057,14 +3057,15 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nestjs-xion@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/nestjs-xion/-/nestjs-xion-1.0.2.tgz#c9152ec6139dd91704ef812d5ce0e4f4c4ba13bb"
-  integrity sha512-fKZDFResMhnWUqdRVnk4oc3Jmr95uQt4u7UjJDFclpKMxWgF7o4PxhLZAjg/kk8AGz88u/Via+UVhA+HWOf7Lg==
+nestjs-xion@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/nestjs-xion/-/nestjs-xion-1.0.3.tgz#69d3fa1093f59c5b812aa6773b2052ba9f310c96"
+  integrity sha512-6W7wlant8mFJGGT54JecvpWKWSKg8zm+GGp6uIeNBKzjARmdfAHhPIFOGSMBNue8opTXriH9PnGfuYx5y4iZIw==
   dependencies:
     "@nestjs/common" "^7.6.4"
     "@nestjs/swagger" "^4.7.8"
     "@nestjsx/crud" "^4.6.2"
+    class-validator "^0.12.2"
     rxjs "^6.6.3"
 
 node-addon-api@^3.0.0:

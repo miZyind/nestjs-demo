@@ -23,8 +23,6 @@
       "#configs": ["src/configs"],
       "#configs/*": ["src/configs/*"],
       "#entities/*": ["src/entities/*"],
-      "#models": ["src/models"],
-      "#models/*": ["src/models/*"],
       "#utils/*": ["src/utils/*"],
       /* NestJS Modules */
       "#app/*": ["src/modules/app/*"],

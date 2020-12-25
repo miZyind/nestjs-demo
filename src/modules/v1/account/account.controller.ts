@@ -1,4 +1,5 @@
 import { ApiStandardResponse } from 'nestjs-xion/decorator';
+import { UUIDParamDTO } from 'nestjs-xion/dto';
 
 import {
   Body,
@@ -13,7 +14,6 @@ import {
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 import { AccountRole } from '#entities/account.entity';
-import { UUIDParamDTO } from '#models/dtos/uuid-param.dto';
 import { AuthStrategy } from '#v1/auth/auth.constant';
 import { RolesGuard } from '#v1/auth/guards/roles.guard';
 
