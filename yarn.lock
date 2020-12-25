@@ -2856,9 +2856,9 @@ memory-fs@^0.5.0:
     readable-stream "^2.0.1"
 
 meow@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/meow/-/meow-8.0.0.tgz#1aa10ee61046719e334ffdc038bb5069250ec99a"
-  integrity sha512-nbsTRz2fwniJBFgUkcdISq8y/q9n9VbiHYbfwklFh5V4V2uAcxtKQkDc0yCLPM/kP0d+inZBewn3zJqewHE7kg==
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/meow/-/meow-8.1.0.tgz#0fcaa267e35e4d58584b8205923df6021ddcc7ba"
+  integrity sha512-fNWkgM1UVMey2kf24yLiccxLihc5W+6zVus3/N0b+VfnJgxV99E9u04X6NAiKdg6ED7DAQBX5sy36NM0QJZkWA==
   dependencies:
     "@types/minimist" "^1.2.0"
     camelcase-keys "^6.2.2"
@@ -3056,6 +3056,16 @@ neo-async@^2.6.2:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
+
+nestjs-xion@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/nestjs-xion/-/nestjs-xion-1.0.2.tgz#c9152ec6139dd91704ef812d5ce0e4f4c4ba13bb"
+  integrity sha512-fKZDFResMhnWUqdRVnk4oc3Jmr95uQt4u7UjJDFclpKMxWgF7o4PxhLZAjg/kk8AGz88u/Via+UVhA+HWOf7Lg==
+  dependencies:
+    "@nestjs/common" "^7.6.4"
+    "@nestjs/swagger" "^4.7.8"
+    "@nestjsx/crud" "^4.6.2"
+    rxjs "^6.6.3"
 
 node-addon-api@^3.0.0:
   version "3.1.0"

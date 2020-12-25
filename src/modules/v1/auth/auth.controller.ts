@@ -1,7 +1,7 @@
+import { ApiStandardResponse } from 'nestjs-xion/decorator';
+
 import { Body, Controller, Patch } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-
-import { ApiStandardResponse } from '#utils/decorator';
 
 import { AuthService } from './auth.service';
 import { LogInDTO } from './dtos/log-in.dto';

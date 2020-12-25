@@ -1,3 +1,5 @@
+import { StandardResponseInterceptor } from 'nestjs-xion/interceptor';
+
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -5,7 +7,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from '#app/app.module';
 import Config, { AppConfig, RMQConfig, SwaggerConfig } from '#configs';
 import { BaseExceptionFilter } from '#utils/base-exception-filter';
-import { StandardResponseInterceptor } from '#utils/interceptor';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
