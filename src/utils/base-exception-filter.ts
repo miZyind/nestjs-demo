@@ -26,13 +26,13 @@ enum FilteredMessage {
 
 interface UnfilteredBody {
   statusCode?: HttpStatus;
-  message: string | string[];
+  message: string[] | string;
 }
 
 interface FilteredBody {
   code: number;
   message: string;
-  data: null | string[];
+  data: string[] | null;
 }
 
 @Catch()

@@ -10,7 +10,7 @@ export class AppController {
   @Get()
   getAppConfig(): Pick<
     AppConfig,
-    'name' | 'version' | 'host' | 'port' | 'basePath'
+    'basePath' | 'host' | 'name' | 'port' | 'version'
   > {
     const { name, version, host, port, basePath } = this.config.get(
       Config.App,
