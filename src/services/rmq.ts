@@ -1,7 +1,7 @@
-import { INestApplication } from '@nestjs/common';
 import { Transport } from '@nestjs/microservices';
 
-import { RMQConfig } from '#configs';
+import type { INestApplication } from '@nestjs/common';
+import type { RMQConfig } from '#configs';
 
 export function setup(
   app: INestApplication,

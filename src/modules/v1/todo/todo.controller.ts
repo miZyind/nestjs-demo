@@ -12,9 +12,8 @@ import {
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { Crud, CrudAuth, CrudController } from '@nestjsx/crud';
+import { Crud, CrudAuth } from '@nestjsx/crud';
 
-import { Account } from '#entities/account.entity';
 import { Todo } from '#entities/todo.entity';
 import { AuthStrategy } from '#v1/auth/auth.constant';
 
@@ -22,6 +21,9 @@ import { CreateTodoDTO } from './dtos/create-todo.dto';
 import { UpdateTodoDTO } from './dtos/update-todo.dto';
 import { TodoResponse } from './responses/todo.response';
 import { TodoService } from './todo.service';
+
+import type { CrudController } from '@nestjsx/crud';
+import type { Account } from '#entities/account.entity';
 
 @ApiTags('Todo')
 @ApiSecurity(AuthStrategy.JWT)

@@ -1,10 +1,12 @@
-import { ExecutionContext, Injectable } from '@nestjs/common';
-import { AuthGuard, IAuthGuard, Type } from '@nestjs/passport';
-
-import { AccountRole } from '#entities/account.entity';
+import { Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { AuthStrategy } from '../auth.constant';
-import { ValidatedAccount } from '../strategies/jwt.strategy';
+
+import type { ExecutionContext } from '@nestjs/common';
+import type { IAuthGuard, Type } from '@nestjs/passport';
+import type { AccountRole } from '#entities/account.entity';
+import type { ValidatedAccount } from '../strategies/jwt.strategy';
 
 export function RolesGuard(...roles: AccountRole[]): Type<IAuthGuard> {
   @Injectable()

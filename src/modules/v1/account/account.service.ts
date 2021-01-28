@@ -1,4 +1,4 @@
-import { FindOneOptions, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -6,7 +6,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Account, AccountRole, AccountStatus } from '#entities/account.entity';
 
 import { AccountError } from './account.constant';
-import { CreateDTO } from './dtos/create.dto';
+
+import type { FindOneOptions } from 'typeorm';
+import type { CreateDTO } from './dtos/create.dto';
 
 @Injectable()
 export class AccountService {

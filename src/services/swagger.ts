@@ -1,12 +1,13 @@
 import { customOptions } from 'nestjs-xion/swagger';
 import { resolve } from 'path';
 
-import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-import { AppConfig } from '#configs';
 import { ModulesV1 } from '#v1';
 import { AuthStrategy as AuthStrategyV1 } from '#v1/auth/auth.constant';
+
+import type { INestApplication } from '@nestjs/common';
+import type { AppConfig } from '#configs';
 
 export function setup(
   app: INestApplication,

@@ -4,10 +4,11 @@ import { Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 
 import Config, { AppConfig } from '#configs';
-import { AccountRole } from '#entities/account.entity';
 
 import { AuthStrategy } from '../auth.constant';
 import { AuthService } from '../auth.service';
+
+import type { AccountRole } from '#entities/account.entity';
 
 export interface JWTPayload {
   uuid: string;
