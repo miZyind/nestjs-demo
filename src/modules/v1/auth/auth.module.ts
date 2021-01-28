@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
@@ -13,7 +13,6 @@ import { JWTStrategy } from './strategies/jwt.strategy';
 @Module({
   imports: [
     AccountModule,
-    ConfigModule,
     JwtModule.registerAsync({
       useFactory: (config: ConfigService) =>
         (config.get(Config.App) as AppConfig).jwt,

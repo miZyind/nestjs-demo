@@ -25,7 +25,7 @@
       "#entities/*": ["src/entities/*"],
       "#utils/*": ["src/utils/*"],
       /* NestJS Modules */
-      "#app/*": ["src/modules/app/*"],
+      "#app/*": ["src/app/*"],
       "#v1": ["src/modules/v1"],
       "#v1/*": ["src/modules/v1/*"]
     },
