@@ -5,8 +5,8 @@
 [![Yarn](https://img.shields.io/badge/-~=1.22-2c8ebb?style=for-the-badge&label=&logo=yarn&logoColor=fff)](https://classic.yarnpkg.com)
 [![MySQL](https://img.shields.io/badge/->=8-4479a1?style=for-the-badge&label=&logo=mysql&logoColor=fff)](https://www.mysql.com)
 [![NestJS](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/@nestjs/core?style=for-the-badge&label=&color=e0234e&logo=nestjs)](https://nestjs.com)
-[![TypeScript](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/typescript?style=for-the-badge&label=&color=007acc&logo=typescript)](https://www.typescriptlang.org)
-[![Prettier](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=fff)](https://prettier.io)
+[![TypeScript](https://img.shields.io/github/package-json/dependency-version/mizyind/nestjs-demo/dev/typescript?style=for-the-badge&label=&color=007acc&logo=typescript&logoColor=fff)](https://www.typescriptlang.org)
+[![Prettier](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/prettier?style=for-the-badge&label=&color=f7b93e&logo=prettier&logoColor=000)](https://prettier.io)
 [![ESLint](https://img.shields.io/npm/dependency-version/eslint-plugin-mizyind/eslint?style=for-the-badge&label=&color=4b32c3&logo=eslint&logoColor=fff)](https://eslint.org)
 
 ## 💠 Requirement
