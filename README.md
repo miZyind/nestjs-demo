@@ -65,7 +65,7 @@ Run development environment:
 # Install packages
 $ yarn
 # Up docker compose environment
-$ docker-compose -f docker-compose-local.yml up
+$ docker-compose up
 # Setup dotenv variables
 $ cp .env.example .env
 # Launch app
