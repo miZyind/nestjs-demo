@@ -52,6 +52,7 @@
   - **[typescript-eslint](https://typescript-eslint.io)** - Monorepo for all the tooling which enables ESLint to support TypeScript.
   - **[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier)** - Turns off all rules that are unnecessary or might conflict with Prettier.
   - **[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)** - ESLint plugin for Prettier formatting.
+  - **[eslint-plugin-import](https://github.com/import-js/eslint-plugin-import)** - ESLint plugin with rules that help validate proper imports.
 - **[Husky](https://github.com/typicode/husky)** - Git hooks made easy.
   - **[commitlint](https://github.com/conventional-changelog/commitlint)** - Lint commit messages.
     - **[@commitlint/cli](https://www.npmjs.com/package/@commitlint/cli)** - Primary way to interact with commitlint.
