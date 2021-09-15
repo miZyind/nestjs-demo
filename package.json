@@ -5,6 +5,9 @@
   "repository": "git@github.com:miZyind/nestjs-demo.git",
   "author": "miZyind <mizyind@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "prepare": "husky install",
     "clean": "rimraf dist",
@@ -13,9 +16,6 @@
     "build": "yarn clean && yarn lint && nest build --path tsconfig.json",
     "start": "node dist/main.js",
     "mg": "typeorm migration:generate -n"
-  },
-  "engines": {
-    "node": ">=16"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.6",
