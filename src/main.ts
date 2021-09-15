@@ -33,7 +33,7 @@ async function bootstrap(): Promise<void> {
     (await import('./services/swagger')).setup(app, appConf);
   }
 
-  await app.startAllMicroservicesAsync();
+  await app.startAllMicroservices();
   await app.listen(appConf.port, appConf.host);
 }
 
