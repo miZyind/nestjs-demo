@@ -2,7 +2,12 @@ import { readdirSync } from 'fs';
 
 import { registerAs } from '@nestjs/config';
 
-export function load(): ReturnType<typeof registerAs>[] {
+import type { ConfigFactoryKeyHost } from '@nestjs/config';
+
+type TFactory = () => Promise<unknown>;
+type RegisteredConfig = ConfigFactoryKeyHost<ReturnType<TFactory>> & TFactory;
+
+export function load(): RegisteredConfig[] {
   return readdirSync(__dirname)
     .filter((file) => !file.includes('index.js'))
     .map((file) =>
