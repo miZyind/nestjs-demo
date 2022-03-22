@@ -7,6 +7,8 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Account, AccountStatus, Role } from '#entities/account.entity';
 import { AccountError } from '#modules/account/account.constant';
 
+import type { StandardList } from 'nestjs-xion/model';
+import type { CrudRequest, GetManyDefaultResponse } from '@nestjsx/crud';
 import type { CreateAccountDTO } from '#modules/account/dtos/create-account.dto';
 
 @Injectable()
@@ -15,6 +17,25 @@ export class AccountService extends TypeOrmCrudService<Account> {
 
   constructor(@InjectRepository(Account) protected repo: Repository<Account>) {
     super(repo);
+  }
+
+  async getAll(req: CrudRequest): Promise<StandardList<Account>> {
+    req.options.query = {
+      allow: ['createdAt', 'updatedAt', 'uuid', 'status', 'role', 'email'],
+      join: {
+        todos: {
+          allow: ['createdAt', 'updatedAt', 'uuid', 'status', 'message'],
+          eager: true,
+        },
+      },
+      sort: [{ field: 'updatedAt', order: 'DESC' }],
+    };
+
+    const { data, total } = (await this.getMany(
+      req,
+    )) as GetManyDefaultResponse<Account>;
+
+    return { data, total };
   }
 
   async createAdmin({ email, password }: CreateAccountDTO): Promise<void> {
