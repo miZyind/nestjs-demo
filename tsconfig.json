@@ -11,7 +11,7 @@
     "isolatedModules": true,
     "outDir": "dist",
     "removeComments": true,
-    "lib": ["ES2019.Array"],
+    "lib": ["ES2019.Array", "ES2019.Object"],
     /* Strict Checks */
     "strict": true,
     /* Module Resolution */
@@ -20,14 +20,12 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "paths": {
+      "#app/*": ["src/app/*"],
       "#configs": ["src/configs"],
       "#configs/*": ["src/configs/*"],
       "#entities/*": ["src/entities/*"],
-      "#utils/*": ["src/utils/*"],
-      /* NestJS Modules */
-      "#app/*": ["src/app/*"],
-      "#v1": ["src/modules/v1"],
-      "#v1/*": ["src/modules/v1/*"]
+      "#modules/*": ["src/modules/*"],
+      "#utils/*": ["src/utils/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */

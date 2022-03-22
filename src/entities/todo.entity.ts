@@ -6,8 +6,8 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Account } from './account.entity';
-import { Base } from './base.entity';
+import { Account } from '#entities/account.entity';
+import { Base } from '#entities/base.entity';
 
 export enum TodoStatus {
   Doing = 'DOING',
@@ -19,17 +19,13 @@ export class Todo extends Base {
   @PrimaryGeneratedColumn('uuid')
   readonly uuid!: string;
 
-  @Column('text')
-  message!: string;
+  @Column({ default: TodoStatus.Doing })
+  readonly status!: TodoStatus;
 
-  @Column({
-    type: 'enum',
-    enum: TodoStatus,
-    default: TodoStatus.Doing,
-  })
-  status!: TodoStatus;
+  @Column('text')
+  readonly message!: string;
 
   @JoinColumn({ name: 'accountUUID' })
   @ManyToOne(() => Account)
-  account!: Account;
+  readonly account!: Account;
 }

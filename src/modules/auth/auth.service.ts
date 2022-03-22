@@ -3,14 +3,13 @@ import { hasValue } from 'nestjs-xion/guarder';
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { AccountService } from '#v1/account/account.service';
+import { AccountService } from '#modules/account/account.service';
+import { AuthError } from '#modules/auth/auth.constant';
 
-import { AuthError } from './auth.constant';
-
-import type { AccountRole } from '#entities/account.entity';
-import type { LogInDTO } from './dtos/log-in.dto';
-import type { LogInResponse } from './responses/log-in.response';
-import type { JWTPayload } from './strategies/jwt.strategy';
+import type { Role } from '#entities/account.entity';
+import type { LogInDTO } from '#modules/auth/dtos/log-in.dto';
+import type { LogInResponse } from '#modules/auth/responses/log-in.response';
+import type { JWTPayload } from '#modules/auth/strategies/jwt.strategy';
 
 @Injectable()
 export class AuthService {
@@ -25,16 +24,16 @@ export class AuthService {
     email,
     attempt,
   }: LogInDTO): Promise<LogInResponse> {
-    const account = await this.accountService.findOne({
+    const entity = await this.accountService.findOne({
       select: ['uuid', 'status', 'password'],
       where: { email },
     });
 
-    if (hasValue(account) && (await account.comparePassword(attempt))) {
-      this.accountService.validateStatus(account.status);
+    if (hasValue(entity) && (await entity.comparePassword(attempt))) {
+      this.accountService.validateStatus(entity.status);
 
       const token = await this.jwtService.signAsync({
-        uuid: account.uuid,
+        uuid: entity.uuid,
         email,
       } as JWTPayload);
 
@@ -46,16 +45,16 @@ export class AuthService {
     throw new BadRequestException(AuthError.InvalidLoginCredentials);
   }
 
-  async validateAccountAndGetRole(uuid: string): Promise<AccountRole> {
-    const account = await this.accountService.findOne({
+  async validateAccountAndGetRole(uuid: string): Promise<Role> {
+    const entity = await this.accountService.findOne({
       select: ['status', 'role'],
       where: { uuid },
     });
 
-    if (hasValue(account)) {
-      this.accountService.validateStatus(account.status);
+    if (hasValue(entity)) {
+      this.accountService.validateStatus(entity.status);
 
-      return account.role;
+      return entity.role;
     }
 
     throw new BadRequestException(AuthError.InvalidToken);

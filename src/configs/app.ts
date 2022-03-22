@@ -1,9 +1,8 @@
 export = {
   name: String(process.env.APP_NAME),
-  version: String(process.env.APP_VERSION),
   host: String(process.env.APP_HOST),
   port: Number(process.env.APP_PORT),
-  basePath: String(process.env.APP_BASE_PATH),
+  secret: String(process.env.APP_SECRET),
   jwt: {
     secret: String(process.env.APP_JWT_SECRET),
     signOptions: {

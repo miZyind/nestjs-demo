@@ -8,9 +8,13 @@ import {
 } from 'typeorm';
 
 import { BCRYPT_SALT_ROUNDS } from '#app/app.constant';
+import { Base } from '#entities/base.entity';
+import { Todo } from '#entities/todo.entity';
 
-import { Base } from './base.entity';
-import { Todo } from './todo.entity';
+export enum Role {
+  User = 'User',
+  Admin = 'Admin',
+}
 
 export enum AccountStatus {
   ApprovePending = 'APPROVE_PENDING',
@@ -18,34 +22,25 @@ export enum AccountStatus {
   Banned = 'BANNED',
 }
 
-export enum AccountRole {
-  User = 'User',
-  Admin = 'Admin',
-}
-
 @Entity()
 export class Account extends Base {
   @PrimaryGeneratedColumn('uuid')
   readonly uuid!: string;
 
-  @Column({
-    type: 'enum',
-    enum: AccountStatus,
-    default: AccountStatus.ApprovePending,
-  })
-  status!: AccountStatus;
+  @Column()
+  readonly status!: AccountStatus;
 
-  @Column({ type: 'enum', enum: AccountRole })
-  role!: AccountRole;
+  @Column()
+  readonly role!: Role;
 
   @Column({ unique: true })
-  email!: string;
+  readonly email!: string;
 
   @Column()
   password!: string;
 
   @OneToMany(() => Todo, ({ account }) => account)
-  todos!: Todo[];
+  readonly todos!: Todo[];
 
   @BeforeInsert()
   async hashPassword(): Promise<void> {

@@ -8,7 +8,9 @@ import { Todo } from '#entities/todo.entity';
 
 @Injectable()
 export class TodoService extends TypeOrmCrudService<Todo> {
-  constructor(@InjectRepository(Todo) protected repo: Repository<Todo>) {
+  constructor(
+    @InjectRepository(Todo) protected readonly repo: Repository<Todo>,
+  ) {
     super(repo);
   }
 }

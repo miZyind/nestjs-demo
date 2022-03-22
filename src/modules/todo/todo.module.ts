@@ -2,14 +2,13 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Todo } from '#entities/todo.entity';
-
-import { TodoController } from './todo.controller';
-import { TodoService } from './todo.service';
+import { TodoProtectedController } from '#modules/todo/todo.protected.controller';
+import { TodoService } from '#modules/todo/todo.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Todo])],
   providers: [TodoService],
-  controllers: [TodoController],
+  controllers: [TodoProtectedController],
   exports: [TodoService],
 })
 export class TodoModule {}

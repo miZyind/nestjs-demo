@@ -5,6 +5,13 @@
     "dbaeumer.vscode-eslint",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
-    "mike-co.import-sorter"
+    "roscop.activefileinstatusbar",
+    "mizyind.darkpp-regular",
+    "ms-azuretools.vscode-docker",
+    "eamodio.gitlens",
+    "dozerg.tsimportsorter",
+    "wayou.vscode-todo-highlight",
+    "dakara.transformer",
+    "vscode-icons-team.vscode-icons"
   ]
 }

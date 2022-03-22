@@ -1,7 +1,7 @@
+import { ConfigService } from 'nestjs-xion/config';
 import { StandardResponseInterceptor } from 'nestjs-xion/interceptor';
 
 import { ValidationPipe } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from '#app/app.module';
@@ -20,7 +20,6 @@ async function bootstrap(): Promise<void> {
   const swaggerConf = config.get(Config.Swagger) as SwaggerConfig;
 
   // Setup app global settings
-  app.setGlobalPrefix(appConf.basePath);
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
   app.useGlobalFilters(new BaseExceptionFilter());
   app.useGlobalInterceptors(new StandardResponseInterceptor());

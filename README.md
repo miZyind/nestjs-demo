@@ -39,8 +39,6 @@
 - **[Class Validator](https://github.com/typestack/class-validator)** - Decorator-based property validation for classes.
 - **[Class Transformer](https://github.com/typestack/class-transformer)** - Decorator-based transform-, serializ-, and deserialization between objects and classes.
 - **[TypeScript](https://www.typescriptlang.org)** - Typed JS at Any Scale.
-  - **[ts-node](https://github.com/TypeStrong/ts-node)** - TS execution and REPL for NodeJS.
-  - **[tslib](https://github.com/microsoft/tslib)** - Runtime library for TypeScript helpers.
 - **[Prettier](https://prettier.io)** - Opinionated Code Formatter.
 - **[ESLint](https://eslint.org)** - Pluggable JS linter.
   - **[typescript-eslint](https://typescript-eslint.io)** - Monorepo for all the tooling which enables ESLint to support TypeScript.

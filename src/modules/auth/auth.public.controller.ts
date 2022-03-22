@@ -3,13 +3,13 @@ import { ApiStandardResponse } from 'nestjs-xion/decorator';
 import { Body, Controller, Patch } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { AuthService } from './auth.service';
-import { LogInDTO } from './dtos/log-in.dto';
-import { LogInResponse } from './responses/log-in.response';
+import { AuthService } from '#modules/auth/auth.service';
+import { LogInDTO } from '#modules/auth/dtos/log-in.dto';
+import { LogInResponse } from '#modules/auth/responses/log-in.response';
 
 @ApiTags('Auth')
-@Controller('v1/auth')
-export class AuthController {
+@Controller('public/auth')
+export class AuthPublicController {
   constructor(private readonly service: AuthService) {}
 
   @Patch('log-in')
