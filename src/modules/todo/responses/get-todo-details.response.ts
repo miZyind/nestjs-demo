@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 import { TodoStatus } from '#entities/todo.entity';
 
-export class TodoResponse {
+export class GetTodoDetailsResponse {
   @ApiProperty()
   readonly createdAt!: Date;
 
