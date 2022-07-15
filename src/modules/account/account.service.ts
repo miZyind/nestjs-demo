@@ -1,39 +1,39 @@
+import { CRUDService } from 'nestjs-xion/crud';
 import { Repository } from 'typeorm';
 
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 
 import { Account, AccountStatus, Role } from '#entities/account.entity';
 import { AccountError } from '#modules/account/account.constant';
 
+import type { CRUDRequest } from 'nestjs-xion/crud';
 import type { StandardList } from 'nestjs-xion/model';
-import type { CrudRequest, GetManyDefaultResponse } from '@nestjsx/crud';
+import type { FindOneOptions } from 'typeorm';
 import type { CreateAccountDTO } from '#modules/account/dtos/create-account.dto';
 
 @Injectable()
-export class AccountService extends TypeOrmCrudService<Account> {
+export class AccountService extends CRUDService<Account> {
   private readonly logger = new Logger(AccountService.name);
 
   constructor(@InjectRepository(Account) protected repo: Repository<Account>) {
     super(repo);
   }
 
-  async getAll(req: CrudRequest): Promise<StandardList<Account>> {
-    req.options.query = {
+  async findOne(options: FindOneOptions<Account>): Promise<Account | null> {
+    return this.repo.findOne(options);
+  }
+
+  async getAll(req: CRUDRequest): Promise<StandardList<Account>> {
+    const { data, total } = await this.getMany(req, {
       allow: ['createdAt', 'updatedAt', 'uuid', 'status', 'role', 'email'],
       join: {
         todos: {
           allow: ['createdAt', 'updatedAt', 'uuid', 'status', 'message'],
-          eager: true,
         },
       },
       sort: [{ field: 'updatedAt', order: 'DESC' }],
-    };
-
-    const { data, total } = (await this.getMany(
-      req,
-    )) as GetManyDefaultResponse<Account>;
+    });
 
     return { data, total };
   }
@@ -76,7 +76,7 @@ export class AccountService extends TypeOrmCrudService<Account> {
     email: string,
     password: string,
   ): Promise<void> {
-    if (await this.repo.count({ email })) {
+    if (await this.repo.countBy({ email })) {
       throw new BadRequestException(AccountError.ThisEmailAlreadyExists);
     }
 

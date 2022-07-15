@@ -1,10 +1,10 @@
+import { CRUDInterceptor, CRUDRequest, ParsedRequest } from 'nestjs-xion/crud';
 import {
   ApiCrudQueries,
   ApiStandardListResponse,
   ApiStandardResponse,
 } from 'nestjs-xion/decorator';
 import { UUIDParamDTO } from 'nestjs-xion/dto';
-import { PaginationInterceptor } from 'nestjs-xion/interceptor';
 
 import {
   Body,
@@ -18,7 +18,6 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CrudRequest, ParsedRequest } from '@nestjsx/crud';
 
 import { AccountService } from '#modules/account/account.service';
 import { CreateAccountDTO } from '#modules/account/dtos/create-account.dto';
@@ -33,12 +32,12 @@ export class AccountProtectedController {
 
   @Get()
   @JWTAdminGuard()
-  @UseInterceptors(PaginationInterceptor)
+  @UseInterceptors(CRUDInterceptor)
   @ApiOperation({ summary: 'Get all accounts and their todo items' })
   @ApiCrudQueries()
   @ApiStandardListResponse({ type: FormattedAccount })
   async getAll(
-    @ParsedRequest() req: CrudRequest,
+    @ParsedRequest() req: CRUDRequest,
   ): ReturnType<AccountService['getAll']> {
     return this.service.getAll(req);
   }
