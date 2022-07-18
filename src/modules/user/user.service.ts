@@ -4,27 +4,27 @@ import { Repository } from 'typeorm';
 import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Account, AccountStatus, Role } from '#entities/account.entity';
-import { AccountError } from '#modules/account/account.constant';
+import { Role, User, UserStatus } from '#entities/user.entity';
+import { UserError } from '#modules/user/user.constant';
 
 import type { CRUDRequest } from 'nestjs-xion/crud';
 import type { StandardList } from 'nestjs-xion/model';
 import type { FindOneOptions } from 'typeorm';
-import type { CreateAccountDTO } from '#modules/account/dtos/create-account.dto';
+import type { CreateUserDTO } from '#modules/user/dtos/create-user.dto';
 
 @Injectable()
-export class AccountService extends CRUDService<Account> {
-  private readonly logger = new Logger(AccountService.name);
+export class UserService extends CRUDService<User> {
+  private readonly logger = new Logger(UserService.name);
 
-  constructor(@InjectRepository(Account) protected repo: Repository<Account>) {
+  constructor(@InjectRepository(User) protected repo: Repository<User>) {
     super(repo);
   }
 
-  async findOne(options: FindOneOptions<Account>): Promise<Account | null> {
+  async findOne(options: FindOneOptions<User>): Promise<User | null> {
     return this.repo.findOne(options);
   }
 
-  async getAll(req: CRUDRequest): Promise<StandardList<Account>> {
+  async getAll(req: CRUDRequest): Promise<StandardList<User>> {
     const { data, total } = await this.getMany(req, {
       allow: ['createdAt', 'updatedAt', 'uuid', 'status', 'role', 'email'],
       join: {
@@ -38,36 +38,34 @@ export class AccountService extends CRUDService<Account> {
     return { data, total };
   }
 
-  async createAdmin({ email, password }: CreateAccountDTO): Promise<void> {
+  async createAdmin({ email, password }: CreateUserDTO): Promise<void> {
     await this.create(Role.Admin, email, password);
     this.logger.debug(`Admin account [${email}] created`);
   }
 
-  async register({ email, password }: CreateAccountDTO): Promise<void> {
+  async register({ email, password }: CreateUserDTO): Promise<void> {
     await this.create(Role.User, email, password);
     this.logger.debug(`Account [${email}] registered`);
   }
 
   async approve(uuid: string): Promise<void> {
-    await this.repo.update(uuid, { status: AccountStatus.Approved });
+    await this.repo.update(uuid, { status: UserStatus.Approved });
   }
 
   async reject(uuid: string): Promise<void> {
-    await this.repo.update(uuid, { status: AccountStatus.Banned });
+    await this.repo.update(uuid, { status: UserStatus.Banned });
   }
 
-  validateStatus(status: AccountStatus): void {
+  validateStatus(status: UserStatus): void {
     switch (status) {
-      case AccountStatus.ApprovePending:
-        throw new BadRequestException(
-          AccountError.ThisAccountHasNotBeenApproved,
-        );
-      case AccountStatus.Approved:
+      case UserStatus.ApprovePending:
+        throw new BadRequestException(UserError.ThisUserHasNotBeenApproved);
+      case UserStatus.Approved:
         break;
-      case AccountStatus.Banned:
-        throw new BadRequestException(AccountError.ThisAccountHasBeenBanned);
+      case UserStatus.Banned:
+        throw new BadRequestException(UserError.ThisUserHasBeenBanned);
       default:
-        throw new BadRequestException(AccountError.InvalidAccountStatus);
+        throw new BadRequestException(UserError.InvalidUserStatus);
     }
   }
 
@@ -77,15 +75,13 @@ export class AccountService extends CRUDService<Account> {
     password: string,
   ): Promise<void> {
     if (await this.repo.countBy({ email })) {
-      throw new BadRequestException(AccountError.ThisEmailAlreadyExists);
+      throw new BadRequestException(UserError.ThisEmailAlreadyExists);
     }
 
     await this.repo.save(
       this.repo.create({
         status:
-          role === Role.Admin
-            ? AccountStatus.Approved
-            : AccountStatus.ApprovePending,
+          role === Role.Admin ? UserStatus.Approved : UserStatus.ApprovePending,
         role,
         email,
         password,

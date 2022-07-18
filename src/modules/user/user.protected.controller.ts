@@ -19,40 +19,40 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
-import { AccountService } from '#modules/account/account.service';
-import { CreateAccountDTO } from '#modules/account/dtos/create-account.dto';
-import { FormattedAccount } from '#modules/account/responses/formatted-account.response';
 import { JWTAdminGuard } from '#modules/auth/guards/jwt-admin.guard';
 import { SecretGuard } from '#modules/auth/guards/secret.guard';
+import { CreateUserDTO } from '#modules/user/dtos/create-user.dto';
+import { FormattedUser } from '#modules/user/responses/formatted-user.response';
+import { UserService } from '#modules/user/user.service';
 
-@ApiTags('Account')
-@Controller('protected/accounts')
-export class AccountProtectedController {
-  constructor(private readonly service: AccountService) {}
+@ApiTags('User')
+@Controller('protected/users')
+export class UserProtectedController {
+  constructor(private readonly service: UserService) {}
 
   @Get()
   @JWTAdminGuard()
   @UseInterceptors(CRUDInterceptor)
-  @ApiOperation({ summary: 'Get all accounts and their todo items' })
+  @ApiOperation({ summary: 'Get all users and their todo items' })
   @ApiCrudQueries()
-  @ApiStandardListResponse({ type: FormattedAccount })
+  @ApiStandardListResponse({ type: FormattedUser })
   async getAll(
     @ParsedRequest() req: CRUDRequest,
-  ): ReturnType<AccountService['getAll']> {
+  ): ReturnType<UserService['getAll']> {
     return this.service.getAll(req);
   }
 
   @Post()
   @SecretGuard()
-  @ApiOperation({ summary: 'Create an admin account' })
+  @ApiOperation({ summary: 'Create an admin user' })
   @ApiStandardResponse({ status: HttpStatus.CREATED })
-  async createAdmin(@Body() dto: CreateAccountDTO): Promise<void> {
+  async createAdmin(@Body() dto: CreateUserDTO): Promise<void> {
     return this.service.createAdmin(dto);
   }
 
   @Put(':uuid')
   @JWTAdminGuard()
-  @ApiOperation({ summary: 'Approve an account creation request' })
+  @ApiOperation({ summary: 'Approve an user creation request' })
   @ApiStandardResponse()
   async approve(@Param() { uuid }: UUIDParamDTO): Promise<void> {
     return this.service.approve(uuid);
@@ -61,7 +61,7 @@ export class AccountProtectedController {
   @Delete(':uuid')
   @JWTAdminGuard()
   @ApiOperation({
-    summary: 'Reject an account creation request or ban an account',
+    summary: 'Reject an user creation request or ban an user',
   })
   @ApiStandardResponse()
   async reject(@Param() { uuid }: UUIDParamDTO): Promise<void> {

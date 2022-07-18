@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppBaseController } from '#app/app.base.controller';
 import Config from '#configs';
-import { AccountModule } from '#modules/account/account.module';
 import { AuthModule } from '#modules/auth/auth.module';
 import { TodoModule } from '#modules/todo/todo.module';
+import { UserModule } from '#modules/user/user.module';
 
 import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
@@ -19,9 +19,9 @@ import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
         config.get(Config.Database) as TypeOrmModuleOptions,
       inject: [ConfigService],
     }),
-    AccountModule,
     AuthModule,
     TodoModule,
+    UserModule,
   ],
   controllers: [AppBaseController],
 })

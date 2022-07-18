@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Account } from '#entities/account.entity';
+import { User } from '#entities/user.entity';
 import { Base } from '#entities/base.entity';
 
 export enum TodoStatus {
@@ -25,7 +25,7 @@ export class Todo extends Base {
   @Column('text')
   readonly message!: string;
 
-  @JoinColumn({ name: 'accountUUID' })
-  @ManyToOne(() => Account)
-  readonly account!: Account;
+  @JoinColumn({ name: 'userUUID' })
+  @ManyToOne(() => User)
+  readonly user!: User;
 }

@@ -23,7 +23,7 @@ export class TodoService extends CRUDService<Todo> {
 
   async getDetails(userUUID: string, uuid: string): Promise<Todo> {
     const entity = await this.repo.findOneBy({
-      account: { uuid: userUUID },
+      user: { uuid: userUUID },
       uuid,
     });
 
@@ -38,12 +38,9 @@ export class TodoService extends CRUDService<Todo> {
     userUUID: string,
     req: CRUDRequest,
   ): Promise<StandardList<Todo>> {
-    // TODO: Optimize query & response
-    req.search.$and = [{ 'account.uuid': userUUID }];
+    req.search.$and = [{ userUUID }];
 
-    return this.getMany(req, {
-      join: { account: { allow: ['uuid'], required: true } },
-    });
+    return this.getMany(req);
   }
 
   async create(
@@ -51,7 +48,7 @@ export class TodoService extends CRUDService<Todo> {
     { message }: CreateTodoDTO,
   ): Promise<CreateTodoResponse> {
     const todo = await this.repo.save(
-      this.repo.create({ message, account: { uuid: userUUID } }),
+      this.repo.create({ message, user: { uuid: userUUID } }),
     );
 
     return { uuid: todo.uuid };
@@ -62,10 +59,10 @@ export class TodoService extends CRUDService<Todo> {
     uuid: string,
     dto: UpdateTodoDTO,
   ): Promise<void> {
-    await this.repo.update({ uuid, account: { uuid: userUUID } }, dto);
+    await this.repo.update({ uuid, user: { uuid: userUUID } }, dto);
   }
 
   async delete(userUUID: string, uuid: string): Promise<void> {
-    await this.repo.delete({ uuid, account: { uuid: userUUID } });
+    await this.repo.delete({ uuid, user: { uuid: userUUID } });
   }
 }

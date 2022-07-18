@@ -33,14 +33,14 @@ import { TodoService } from '#modules/todo/todo.service';
 export class TodoProtectedController {
   constructor(readonly service: TodoService) {}
 
-  @Get(':uuid')
-  @ApiOperation({ summary: 'Get details of a todo item' })
-  @ApiStandardResponse({ type: GetTodoDetailsResponse })
-  async getDetails(
+  @Post()
+  @ApiOperation({ summary: 'Create a new todo item' })
+  @ApiStandardResponse({ status: HttpStatus.CREATED, type: CreateTodoResponse })
+  async create(
     @User() { uuid: userUUID }: UserPayload,
-    @Param() { uuid }: UUIDParamDTO,
-  ): ReturnType<TodoService['getDetails']> {
-    return this.service.getDetails(userUUID, uuid);
+    @Body() dto: CreateTodoDTO,
+  ): ReturnType<TodoService['create']> {
+    return this.service.create(userUUID, dto);
   }
 
   @Get()
@@ -54,14 +54,14 @@ export class TodoProtectedController {
     return this.service.getAll(userUUID, req);
   }
 
-  @Post()
-  @ApiOperation({ summary: 'Create a new todo item' })
-  @ApiStandardResponse({ status: HttpStatus.CREATED, type: CreateTodoResponse })
-  async create(
+  @Get(':uuid')
+  @ApiOperation({ summary: 'Get details of a todo item' })
+  @ApiStandardResponse({ type: GetTodoDetailsResponse })
+  async getDetails(
     @User() { uuid: userUUID }: UserPayload,
-    @Body() dto: CreateTodoDTO,
-  ): ReturnType<TodoService['create']> {
-    return this.service.create(userUUID, dto);
+    @Param() { uuid }: UUIDParamDTO,
+  ): ReturnType<TodoService['getDetails']> {
+    return this.service.getDetails(userUUID, uuid);
   }
 
   @Patch(':uuid')

@@ -16,19 +16,19 @@ export enum Role {
   Admin = 'Admin',
 }
 
-export enum AccountStatus {
+export enum UserStatus {
   ApprovePending = 'APPROVE_PENDING',
   Approved = 'APPROVED',
   Banned = 'BANNED',
 }
 
 @Entity()
-export class Account extends Base {
+export class User extends Base {
   @PrimaryGeneratedColumn('uuid')
   readonly uuid!: string;
 
   @Column()
-  readonly status!: AccountStatus;
+  readonly status!: UserStatus;
 
   @Column()
   readonly role!: Role;
@@ -39,7 +39,7 @@ export class Account extends Base {
   @Column()
   password!: string;
 
-  @OneToMany(() => Todo, ({ account }) => account)
+  @OneToMany(() => Todo, ({ user }) => user)
   readonly todos!: Todo[];
 
   @BeforeInsert()

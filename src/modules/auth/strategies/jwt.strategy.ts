@@ -9,7 +9,7 @@ import { AuthService } from '#modules/auth/auth.service';
 
 import type { ExecutionContext } from '@nestjs/common';
 import type { IAuthGuard, Type } from '@nestjs/passport';
-import type { Role } from '#entities/account.entity';
+import type { Role } from '#entities/user.entity';
 
 export interface JWTPayload {
   uuid: string;
@@ -33,7 +33,7 @@ export class JWTStrategy extends PassportStrategy(Strategy, AuthStrategy.JWT) {
   }
 
   async validate(payload: JWTPayload): Promise<UserPayload> {
-    const role = await this.service.validateAccountAndGetRole(payload.uuid);
+    const role = await this.service.validateUserAndGetRole(payload.uuid);
 
     return { ...payload, role };
   }
