@@ -5,12 +5,15 @@ import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Role, User, UserStatus } from '#entities/user.entity';
-import { UserError } from '#modules/user/user.constant';
+import {
+  INITIAL_COUNT_OF_EACH_STATUS,
+  UserError,
+} from '#modules/user/user.constant';
 
 import type { CRUDRequest } from 'nestjs-xion/crud';
 import type { StandardList } from 'nestjs-xion/model';
 import type { FindOneOptions } from 'typeorm';
-import type { CreateUserDTO } from '#modules/user/dtos/create-user.dto';
+import type { CreateUserDTO } from '#modules/user/user.interface';
 
 @Injectable()
 export class UserService extends CRUDService<User> {
@@ -54,6 +57,29 @@ export class UserService extends CRUDService<User> {
 
   async reject(uuid: string): Promise<void> {
     await this.repo.update(uuid, { status: UserStatus.Banned });
+  }
+
+  async getTotalCountOfEachStatus(): Promise<Record<UserStatus, number>> {
+    const data = await this.repo
+      .createQueryBuilder()
+      .select(['status', 'COUNT(*) AS count'])
+      .groupBy('status')
+      .getRawMany<{ status: UserStatus; count: number }>();
+
+    return Object.values(UserStatus).reduce(
+      (results, status) => {
+        results[status] =
+          data.find((item) => item.status === status)?.count ??
+          INITIAL_COUNT_OF_EACH_STATUS;
+
+        return results;
+      },
+      {
+        [UserStatus.ApprovePending]: INITIAL_COUNT_OF_EACH_STATUS,
+        [UserStatus.Approved]: INITIAL_COUNT_OF_EACH_STATUS,
+        [UserStatus.Banned]: INITIAL_COUNT_OF_EACH_STATUS,
+      },
+    );
   }
 
   validateStatus(status: UserStatus): void {

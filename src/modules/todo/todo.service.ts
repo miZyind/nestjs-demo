@@ -9,9 +9,11 @@ import { TodoError } from '#modules/todo/todo.constant';
 
 import type { CRUDRequest } from 'nestjs-xion/crud';
 import type { StandardList } from 'nestjs-xion/model';
-import type { CreateTodoDTO } from '#modules/todo/dtos/create-todo.dto';
-import type { UpdateTodoDTO } from '#modules/todo/dtos/update-todo.dto';
-import type { CreateTodoResponse } from '#modules/todo/responses/create-todo.response';
+import type {
+  CreateTodoDTO,
+  CreateTodoResponse,
+  UpdateTodoDTO,
+} from '#modules/todo/todo.interface';
 
 @Injectable()
 export class TodoService extends CRUDService<Todo> {
@@ -40,7 +42,7 @@ export class TodoService extends CRUDService<Todo> {
   ): Promise<StandardList<Todo>> {
     req.search.$and = [{ userUUID }];
 
-    return this.getMany(req);
+    return this.getMany(req, { allow: ['uuid', 'status', 'message'] });
   }
 
   async create(

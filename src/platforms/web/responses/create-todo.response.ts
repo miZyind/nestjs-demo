@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateTodoResponse {
+export class WebCreateTodoResponse {
   @ApiProperty({ format: 'uuid' })
   readonly uuid!: string;
 }

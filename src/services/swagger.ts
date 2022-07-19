@@ -10,7 +10,7 @@ import type { AppConfig } from '#configs';
 
 export function setup(app: INestApplication, { name }: AppConfig): void {
   const config = new DocumentBuilder()
-    .setTitle(`${name} API`)
+    .setTitle(`${name} APIs`)
     .addBearerAuth({ type: 'http' }, AuthStrategy.JWT)
     .addSecurity(AuthStrategy.Secret, {
       type: 'apiKey',

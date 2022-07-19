@@ -4,7 +4,7 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 
 import { TodoStatus } from '#entities/todo.entity';
 
-export class UpdateTodoDTO {
+export class WebUpdateTodoDTO {
   @IsOptional()
   @IsEnum(TodoStatus)
   @ApiPropertyOptional({ example: TodoStatus.Done })

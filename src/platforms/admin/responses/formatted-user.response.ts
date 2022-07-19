@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { TodoStatus } from '#entities/todo.entity';
 import { Role, UserStatus } from '#entities/user.entity';
 
-export class FormattedUserTodo {
+export class AdminFormattedUserTodo {
   @ApiProperty()
   readonly createdAt!: Date;
 
@@ -20,7 +20,7 @@ export class FormattedUserTodo {
   readonly message!: string;
 }
 
-export class FormattedUser {
+export class AdminFormattedUser {
   @ApiProperty()
   readonly createdAt!: Date;
 
@@ -40,5 +40,5 @@ export class FormattedUser {
   readonly email!: string;
 
   @ApiProperty()
-  readonly todos!: FormattedUserTodo[];
+  readonly todos!: AdminFormattedUserTodo[];
 }

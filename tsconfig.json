@@ -25,6 +25,7 @@
       "#configs/*": ["src/configs/*"],
       "#entities/*": ["src/entities/*"],
       "#modules/*": ["src/modules/*"],
+      "#platforms/*": ["src/platforms/*"],
       "#utils/*": ["src/utils/*"]
     },
     "typeRoots": ["node_modules/@types", "@types"],

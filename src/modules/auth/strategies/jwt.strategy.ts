@@ -16,7 +16,7 @@ export interface JWTPayload {
   email: string;
 }
 
-export interface UserPayload extends JWTPayload {
+export interface JWTUserPayload extends JWTPayload {
   role: Role;
 }
 
@@ -32,7 +32,7 @@ export class JWTStrategy extends PassportStrategy(Strategy, AuthStrategy.JWT) {
     });
   }
 
-  async validate(payload: JWTPayload): Promise<UserPayload> {
+  async validate(payload: JWTPayload): Promise<JWTUserPayload> {
     const role = await this.service.validateUserAndGetRole(payload.uuid);
 
     return { ...payload, role };
@@ -48,7 +48,7 @@ export function JWTRolesGuard(...roles: Role[]): Type<IAuthGuard> {
       if (isVerified) {
         const request = context
           .switchToHttp()
-          .getRequest<{ user: UserPayload }>();
+          .getRequest<{ user: JWTUserPayload }>();
 
         return roles.includes(request.user.role);
       }
