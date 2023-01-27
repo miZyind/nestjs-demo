@@ -12,7 +12,6 @@ import {
 
 import type { CRUDRequest } from 'nestjs-xion/crud';
 import type { StandardList } from 'nestjs-xion/model';
-import type { FindOneOptions } from 'typeorm';
 import type { CreateUserDTO } from '#modules/user/user.interface';
 
 @Injectable()
@@ -21,10 +20,6 @@ export class UserService extends CRUDService<User> {
 
   constructor(@InjectRepository(User) protected repo: Repository<User>) {
     super(repo);
-  }
-
-  async findOne(options: FindOneOptions<User>): Promise<User | null> {
-    return this.repo.findOne(options);
   }
 
   async getAll(req: CRUDRequest): Promise<StandardList<User>> {
