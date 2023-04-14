@@ -36,9 +36,9 @@
     "typeorm": "^0.3.14"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.5.1",
-    "@commitlint/config-conventional": "^17.4.4",
-    "@nestjs/cli": "^9.3.0",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
+    "@nestjs/cli": "^9.4.0",
     "@nestjs/schematics": "^9.1.0",
     "@types/amqplib": "^0.10.1",
     "@types/bcrypt": "^5.0.0",
