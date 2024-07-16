@@ -5,10 +5,11 @@
   "editor.trimAutoWhitespace": true,
   "files.eol": "\n",
   "files.exclude": {
-    "**/.DS_Store": true,
-    "**/.git": true,
-    "**/node_modules": true,
-    ".vscode": true
+    ".git": true,
+    ".husky": true,
+    ".vscode": true,
+    ".DS_Store": true,
+    "node_modules": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,

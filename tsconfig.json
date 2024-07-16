@@ -5,20 +5,19 @@
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     /* Project Options */
-    "target": "ES2017",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "CommonJS",
     "importHelpers": true,
     "isolatedModules": true,
     "outDir": "dist",
     "removeComments": true,
-    "lib": ["ES2019.Array", "ES2019.Object"],
     /* Strict Checks */
     "strict": true,
     /* Module Resolution */
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node10",
     "paths": {
       "#app/*": ["src/app/*"],
       "#configs": ["src/configs"],
@@ -28,7 +27,6 @@
       "#platforms/*": ["src/platforms/*"],
       "#utils/*": ["src/utils/*"]
     },
-    "typeRoots": ["node_modules/@types", "@types"],
     /* Linter Checks */
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,

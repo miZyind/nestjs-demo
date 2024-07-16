@@ -76,7 +76,7 @@ $ node dist/main.js
 
 ## 🖋 Author
 
-miZyind <mizyind@gmail.com>
+miZyind <mizyind.dev>
 
 ## 📇 License
 

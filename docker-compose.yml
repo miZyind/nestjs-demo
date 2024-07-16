@@ -1,8 +1,7 @@
-version: '3.8'
 services:
   db:
     container_name: nestjs-demo-db
-    image: mysql:8
+    image: mysql:9
     environment:
       MYSQL_DATABASE: 'nestjs_demo'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
@@ -14,8 +13,6 @@ services:
       - 'mysqld'
       - '--character-set-server=utf8mb4'
       - '--collation-server=utf8mb4_unicode_ci'
-      - '--skip-character-set-client-handshake'
-      - '--default-authentication-plugin=mysql_native_password'
   mq:
     container_name: nestjs-demo-mq
     image: rabbitmq:3-management-alpine

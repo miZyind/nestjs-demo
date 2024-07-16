@@ -3,32 +3,33 @@
   "version": "1.0.0",
   "description": "A demo project for NestJS",
   "repository": "git@github.com:miZyind/nestjs-demo.git",
-  "author": "miZyind <mizyind@gmail.com>",
+  "author": "miZyind <mizyind.dev>",
   "license": "MIT",
+  "scripts": {
+    "prepare": "husky",
+    "clean": "rimraf dist",
+    "lint": "eslint src --max-warnings 0",
+    "dev": "nest start --path tsconfig.json --watch",
+    "build": "nest build --path tsconfig.json",
+    "start": "node dist/main.js",
+    "typeorm": "typeorm-ts-node-commonjs -d src/db.ts",
+    "typeorm:generate": "typeorm-ts-node-commonjs migration:generate -d src/db.ts"
+  },
   "engines": {
     "node": ">=20"
   },
-  "scripts": {
-    "prepare": "husky install",
-    "clean": "rimraf dist",
-    "lint": "eslint src --max-warnings 0",
-    "dev": "yarn clean && nest start --path tsconfig.json --watch",
-    "build": "yarn clean && yarn lint && nest build --path tsconfig.json",
-    "start": "node dist/main.js",
-    "mg": "typeorm migration:generate -n"
-  },
   "dependencies": {
-    "@nestjs/common": "^10.3.8",
-    "@nestjs/core": "^10.3.8",
+    "@nestjs/common": "^10.3.10",
+    "@nestjs/core": "^10.3.10",
     "@nestjs/jwt": "^10.2.0",
-    "@nestjs/microservices": "^10.3.8",
-    "@nestjs/platform-express": "^10.3.8",
-    "@nestjs/schedule": "^4.0.2",
+    "@nestjs/microservices": "^10.3.10",
+    "@nestjs/platform-express": "^10.3.10",
+    "@nestjs/schedule": "^4.1.0",
     "@nestjs/typeorm": "^10.0.2",
     "amqp-connection-manager": "^4.1.14",
     "amqplib": "^0.10.4",
     "bcrypt": "^5.1.1",
-    "mysql": "^2.18.1",
+    "mysql2": "^3.10.3",
     "nestjs-xion": "^7.0.9",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
@@ -38,16 +39,16 @@
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@nestjs/cli": "^10.3.2",
-    "@nestjs/schematics": "^10.1.1",
+    "@nestjs/cli": "^10.4.2",
     "@types/amqplib": "^0.10.5",
     "@types/bcrypt": "^5.0.2",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.14.10",
     "@types/passport-jwt": "^4.0.1",
     "eslint-plugin-mizyind": "^5.2.1",
     "husky": "^9.0.11",
-    "rimraf": "^5.0.5",
-    "typescript": "^5.4.5"
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
   },
   "eslintConfig": {
     "extends": [

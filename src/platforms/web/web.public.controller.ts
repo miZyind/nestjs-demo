@@ -8,7 +8,7 @@ import { TermsOfServiceService } from '#modules/terms-of-service/terms-of-servic
 import { UserService } from '#modules/user/user.service';
 import { WebRegisterDTO } from '#platforms/web/dtos/register.dto';
 import { WebGetLatestTermsOfServiceResponse } from '#platforms/web/responses/get-latest-terms-of-service.response';
-import { ApiLocale, Locale } from '#utils/locale.decorator';
+import { ApiLocale, Locale } from '#utils/decorator';
 
 @ApiTags('Platform [Web]')
 @Controller('public/web')

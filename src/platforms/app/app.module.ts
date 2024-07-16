@@ -5,4 +5,4 @@ import { Module } from '@nestjs/common';
   providers: [],
   controllers: [],
 })
-export class MobileModule {}
+export class AppModule {}

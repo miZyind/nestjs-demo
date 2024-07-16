@@ -4,9 +4,12 @@
   "compilerOptions": {
     "plugins": [
       {
-        "name": "@nestjs/swagger/plugin",
+        "name": "@nestjs/swagger",
         "options": {
-          "dtoFileNameSuffix": [".dto.ts", ".response.ts"]
+          "dtoFileNameSuffix": [
+            ".dto.ts",
+            ".response.ts"
+          ]
         }
       }
     ]

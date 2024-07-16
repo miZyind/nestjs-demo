@@ -11,7 +11,7 @@ import { TermsOfServiceModule } from '#modules/terms-of-service/terms-of-service
 import { TodoModule } from '#modules/todo/todo.module';
 import { UserModule } from '#modules/user/user.module';
 import { AdminModule } from '#platforms/admin/admin.module';
-import { MobileModule } from '#platforms/mobile/mobile.module';
+import { AppModule } from '#platforms/app/app.module';
 import { WebModule } from '#platforms/web/web.module';
 
 import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
@@ -31,9 +31,9 @@ import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
     UserModule,
     // Platform Modules
     AdminModule,
-    MobileModule,
+    AppModule,
     WebModule,
   ],
   controllers: [AppBaseController],
 })
-export class AppModule {}
+export class BaseAppModule {}

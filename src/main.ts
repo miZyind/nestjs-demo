@@ -1,35 +1,30 @@
 import { ConfigService } from 'nestjs-xion/config';
+import { ErrorFilter } from 'nestjs-xion/error';
 import { StandardResponseInterceptor } from 'nestjs-xion/interceptor';
 
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
-import { AppModule } from '#app/app.module';
+import { BaseAppModule } from '#app/app.module';
 import Config from '#configs';
-import { BaseExceptionFilter } from '#utils/base-exception.filter';
 
-import type { AppConfig, RMQConfig, SwaggerConfig } from '#configs';
+import type { AppConfig, RMQConfig } from '#configs';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(BaseAppModule);
   const config = app.get(ConfigService);
-
-  // Load configs
   const appConf = config.get(Config.App) as AppConfig;
   const rmqConf = config.get(Config.RMQ) as RMQConfig;
-  const swaggerConf = config.get(Config.Swagger) as SwaggerConfig;
 
-  // Setup app global settings
   app.useGlobalPipes(new ValidationPipe({ transform: true, whitelist: true }));
-  app.useGlobalFilters(new BaseExceptionFilter());
+  app.useGlobalFilters(new ErrorFilter());
   app.useGlobalInterceptors(new StandardResponseInterceptor());
 
   if (rmqConf.enable) {
-    (await import('./services/rmq')).setup(app, rmqConf.options);
+    (await import('./utils/rmq')).setup(app, rmqConf.options);
   }
-
-  if (swaggerConf.enable) {
-    (await import('./services/swagger')).setup(app, appConf);
+  if (appConf.swagger) {
+    (await import('./utils/swagger')).setup(app, appConf);
   }
 
   await app.startAllMicroservices();
