@@ -30,7 +30,7 @@
     "amqplib": "^0.10.4",
     "bcrypt": "^5.1.1",
     "mysql2": "^3.10.3",
-    "nestjs-xion": "^7.0.9",
+    "nestjs-xion": "^7.1.1",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
@@ -42,18 +42,13 @@
     "@nestjs/cli": "^10.4.2",
     "@types/amqplib": "^0.10.5",
     "@types/bcrypt": "^5.0.2",
-    "@types/node": "^20.14.10",
+    "@types/node": "^20.14.12",
     "@types/passport-jwt": "^4.0.1",
-    "eslint-plugin-mizyind": "^5.2.1",
-    "husky": "^9.0.11",
+    "eslint-plugin-mizyind": "^6.0.3",
+    "husky": "^9.1.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3"
-  },
-  "eslintConfig": {
-    "extends": [
-      "plugin:mizyind/base"
-    ]
+    "typescript": "^5.5.4"
   },
   "prettier": {
     "singleQuote": true,
