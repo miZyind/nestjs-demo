@@ -28,7 +28,6 @@
   - **[passport-jwt](https://github.com/mikenicholson/passport-jwt)** - Passport authentication using JSON Web Tokens.
 - **[RxJS](https://rxjs.dev)** - A reactive programming library for JS.
 - **[Bcrypt](https://github.com/kelektiv/node.bcrypt.js)** - A library to help you hash passwords.
-- **[rimraf](https://github.com/isaacs/rimraf)** - A `rm -rf` util for NodeJS.
 - **[TypeORM](https://typeorm.io)** - Amazing ORM for TS and JS.
 - **[Reflect Metadata](https://github.com/rbuckton/reflect-metadata)** - Prototype for a Metadata Reflection API for ECMAScript.
 - **[Class Validator](https://github.com/typestack/class-validator)** - Decorator-based property validation for classes.
