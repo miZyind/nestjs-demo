@@ -17,39 +17,39 @@
   },
   "engines": {
     "node": ">=22",
-    "yarn": "1.22.22"
+    "yarn": ">=1.22.19"
   },
   "packageManager": "yarn@1.22.22",
   "dependencies": {
-    "@nestjs/common": "^11.0.11",
-    "@nestjs/core": "^11.0.11",
+    "@nestjs/common": "^11.1.2",
+    "@nestjs/core": "^11.1.2",
     "@nestjs/jwt": "^11.0.0",
-    "@nestjs/microservices": "^11.0.11",
-    "@nestjs/platform-express": "^11.0.11",
-    "@nestjs/schedule": "^5.0.1",
+    "@nestjs/microservices": "^11.1.2",
+    "@nestjs/platform-express": "^11.1.2",
+    "@nestjs/schedule": "^6.0.0",
     "@nestjs/typeorm": "^11.0.0",
     "amqp-connection-manager": "^4.1.14",
-    "amqplib": "^0.10.5",
-    "bcrypt": "^5.1.1",
-    "mysql2": "^3.13.0",
+    "amqplib": "^0.10.8",
+    "bcrypt": "^6.0.0",
+    "mysql2": "^3.14.1",
     "nestjs-xion": "^8.0.1",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
-    "typeorm": "^0.3.21"
+    "typeorm": "^0.3.24"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.0",
-    "@commitlint/config-conventional": "^19.8.0",
-    "@nestjs/cli": "^11.0.5",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@nestjs/cli": "^11.0.7",
     "@types/amqplib": "^0.10.7",
     "@types/bcrypt": "^5.0.2",
-    "@types/node": "^22.13.10",
+    "@types/node": "^22.15.21",
     "@types/passport-jwt": "^4.0.1",
-    "eslint-plugin-mizyind": "^7.0.0",
+    "eslint-plugin-mizyind": "^8.1.1",
     "husky": "^9.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.3"
   },
   "prettier": {
     "singleQuote": true,

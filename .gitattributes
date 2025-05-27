@@ -1,3 +1,2 @@
-.env.example linguist-documentation
-.husky/** linguist-vendored
-eslint.config.js linguist-vendored
+eslint.config.mjs linguist-vendored
+Dockerfile linguist-vendored
