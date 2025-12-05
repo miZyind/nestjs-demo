@@ -36,12 +36,12 @@
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
-    "typeorm": "^0.3.27"
+    "typeorm": "^0.3.28"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "@nestjs/cli": "^11.0.12",
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@nestjs/cli": "^11.0.14",
     "@types/amqplib": "^0.10.8",
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^24.10.1",
