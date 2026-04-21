@@ -1,19 +1,16 @@
-import { CRUDService } from 'nestjs-xion/crud';
-import { hasValue } from 'nestjs-xion/guarder';
-import { Repository } from 'typeorm';
-
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-
 import { LocaleCode } from '#app/app.constant';
 import { TermsOfServiceTranslation } from '#entities/terms-of-service-translation.entity';
 import { TermsOfService } from '#entities/terms-of-service.entity';
-
 import type {
   GetLatestOneResponse,
   UpsertTermsOfServiceDTO,
   UpsertTermsOfServiceResponse,
 } from '#modules/terms-of-service/terms-of-service.interface';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CRUDService } from 'nestjs-xion/crud';
+import { hasValue } from 'nestjs-xion/guarder';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TermsOfServiceService extends CRUDService<TermsOfService> {

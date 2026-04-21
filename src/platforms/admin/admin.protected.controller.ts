@@ -1,12 +1,12 @@
-import { CRUDInterceptor, CRUDRequest, ParsedRequest } from 'nestjs-xion/crud';
-import {
-  ApiCrudQueries,
-  ApiStandardListResponse,
-  ApiStandardResponse,
-  User,
-} from 'nestjs-xion/decorator';
-import { UUIDParamDTO } from 'nestjs-xion/dto';
-
+import { JWTAdminGuard } from '#modules/auth/guards/jwt-admin.guard';
+import { SecretGuard } from '#modules/auth/guards/secret.guard';
+import type { JWTUserPayload } from '#modules/auth/strategies/jwt.strategy';
+import { TermsOfServiceService } from '#modules/terms-of-service/terms-of-service.service';
+import { UserService } from '#modules/user/user.service';
+import { AdminCreateAdminUserDTO } from '#platforms/admin/dtos/create-admin-user.dto';
+import { AdminUpsertTermsOfServiceDTO } from '#platforms/admin/dtos/upsert-terms-of-service.dto';
+import { AdminFormattedUser } from '#platforms/admin/responses/formatted-user.response';
+import { AdminUpsertTermsOfServiceResponse } from '#platforms/admin/responses/upsert-terms-of-service.response';
 import {
   Body,
   Controller,
@@ -20,16 +20,15 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-
-import { JWTAdminGuard } from '#modules/auth/guards/jwt-admin.guard';
-import { SecretGuard } from '#modules/auth/guards/secret.guard';
-import { JWTUserPayload } from '#modules/auth/strategies/jwt.strategy';
-import { TermsOfServiceService } from '#modules/terms-of-service/terms-of-service.service';
-import { UserService } from '#modules/user/user.service';
-import { AdminCreateAdminUserDTO } from '#platforms/admin/dtos/create-admin-user.dto';
-import { AdminUpsertTermsOfServiceDTO } from '#platforms/admin/dtos/upsert-terms-of-service.dto';
-import { AdminFormattedUser } from '#platforms/admin/responses/formatted-user.response';
-import { AdminUpsertTermsOfServiceResponse } from '#platforms/admin/responses/upsert-terms-of-service.response';
+import type { CRUDRequest } from 'nestjs-xion/crud';
+import { CRUDInterceptor, ParsedRequest } from 'nestjs-xion/crud';
+import {
+  ApiCrudQueries,
+  ApiStandardListResponse,
+  ApiStandardResponse,
+  User,
+} from 'nestjs-xion/decorator';
+import { UUIDParamDTO } from 'nestjs-xion/dto';
 
 @ApiTags('Platform [Admin]')
 @Controller('protected/admin')

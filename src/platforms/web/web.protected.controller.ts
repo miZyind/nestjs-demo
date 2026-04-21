@@ -1,4 +1,5 @@
-import { CRUDInterceptor, CRUDRequest, ParsedRequest } from 'nestjs-xion/crud';
+import type { CRUDRequest } from 'nestjs-xion/crud';
+import { CRUDInterceptor, ParsedRequest } from 'nestjs-xion/crud';
 import {
   ApiStandardListResponse,
   ApiStandardResponse,
@@ -20,7 +21,7 @@ import {
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { JWTUserGuard } from '#modules/auth/guards/jwt-user.guard';
-import { JWTUserPayload } from '#modules/auth/strategies/jwt.strategy';
+import type { JWTUserPayload } from '#modules/auth/strategies/jwt.strategy';
 import { TodoService } from '#modules/todo/todo.service';
 import { WebCreateTodoDTO } from '#platforms/web/dtos/create-todo.dto';
 import { WebUpdateTodoDTO } from '#platforms/web/dtos/update-todo.dto';

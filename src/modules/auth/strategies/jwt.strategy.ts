@@ -1,15 +1,12 @@
-import { ExtractJwt, Strategy } from 'passport-jwt';
-
-import { Inject, Injectable } from '@nestjs/common';
-import { AuthGuard, PassportStrategy } from '@nestjs/passport';
-
-import Config, { AppConfig } from '#configs';
+import Config, { type AppConfig } from '#configs';
+import type { Role } from '#entities/user.entity';
 import { AuthStrategy } from '#modules/auth/auth.constant';
 import { AuthService } from '#modules/auth/auth.service';
-
 import type { ExecutionContext } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import type { IAuthGuard, Type } from '@nestjs/passport';
-import type { Role } from '#entities/user.entity';
+import { AuthGuard, PassportStrategy } from '@nestjs/passport';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 
 export interface JWTPayload {
   uuid: string;

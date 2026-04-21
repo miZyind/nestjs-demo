@@ -1,3 +1,6 @@
+import { BCRYPT_SALT_ROUNDS } from '#app/app.constant';
+import { Base } from '#entities/base.entity';
+import { Todo } from '#entities/todo.entity';
 import { compare, hash } from 'bcrypt';
 import {
   BeforeInsert,
@@ -6,10 +9,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
-import { BCRYPT_SALT_ROUNDS } from '#app/app.constant';
-import { Base } from '#entities/base.entity';
-import { Todo } from '#entities/todo.entity';
 
 export enum Role {
   User = 'User',

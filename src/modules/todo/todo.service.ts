@@ -1,19 +1,16 @@
-import { CRUDService } from 'nestjs-xion/crud';
-import { Repository } from 'typeorm';
-
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-
 import { Todo } from '#entities/todo.entity';
 import { TodoError } from '#modules/todo/todo.constant';
-
-import type { CRUDRequest } from 'nestjs-xion/crud';
-import type { StandardList } from 'nestjs-xion/model';
 import type {
   CreateTodoDTO,
   CreateTodoResponse,
   UpdateTodoDTO,
 } from '#modules/todo/todo.interface';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import type { CRUDRequest } from 'nestjs-xion/crud';
+import { CRUDService } from 'nestjs-xion/crud';
+import type { StandardList } from 'nestjs-xion/model';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TodoService extends CRUDService<Todo> {

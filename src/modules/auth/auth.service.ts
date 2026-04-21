@@ -1,15 +1,11 @@
-import { hasValue } from 'nestjs-xion/guarder';
-
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-
-import { AuthError } from '#modules/auth/auth.constant';
-import { UserService } from '#modules/user/user.service';
-
 import type { Role } from '#entities/user.entity';
+import { AuthError } from '#modules/auth/auth.constant';
 import type { LogInDTO } from '#modules/auth/dtos/log-in.dto';
 import type { LogInResponse } from '#modules/auth/responses/log-in.response';
-import type { JWTPayload } from '#modules/auth/strategies/jwt.strategy';
+import { UserService } from '#modules/user/user.service';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
+import { hasValue } from 'nestjs-xion/guarder';
 
 @Injectable()
 export class AuthService {
@@ -35,7 +31,7 @@ export class AuthService {
       const token = await this.jwtService.signAsync({
         uuid: entity.uuid,
         email,
-      } as JWTPayload);
+      });
 
       this.logger.debug(`User [${email}] logged in`);
 

@@ -1,12 +1,10 @@
-import { Strategy as BaseStrategy } from 'passport-strategy';
-
+import type { AppConfig } from '#configs';
+import Config from '#configs';
+import { AuthError, AuthStrategy } from '#modules/auth/auth.constant';
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-
-import Config, { AppConfig } from '#configs';
-import { AuthError, AuthStrategy } from '#modules/auth/auth.constant';
-
 import type { Request } from 'express';
+import { Strategy as BaseStrategy } from 'passport-strategy';
 
 class Strategy extends BaseStrategy {
   constructor(

@@ -21,10 +21,10 @@ async function bootstrap(): Promise<void> {
   app.useGlobalInterceptors(new StandardResponseInterceptor());
 
   if (rmqConf.enable) {
-    (await import('./utils/rmq')).setup(app, rmqConf.options);
+    (await import('./utils/rmq.js')).setup(app, rmqConf.options);
   }
   if (appConf.swagger) {
-    (await import('./utils/swagger')).setup(app, appConf);
+    (await import('./utils/swagger.js')).setup(app, appConf);
   }
 
   await app.startAllMicroservices();

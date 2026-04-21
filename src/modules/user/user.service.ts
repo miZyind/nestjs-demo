@@ -1,18 +1,15 @@
-import { CRUDService } from 'nestjs-xion/crud';
-import { Repository } from 'typeorm';
-
-import { BadRequestException, Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-
 import { Role, User, UserStatus } from '#entities/user.entity';
 import {
   INITIAL_COUNT_OF_EACH_STATUS,
   UserError,
 } from '#modules/user/user.constant';
-
-import type { CRUDRequest } from 'nestjs-xion/crud';
-import type { StandardList } from 'nestjs-xion/model';
 import type { CreateUserDTO } from '#modules/user/user.interface';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import type { CRUDRequest } from 'nestjs-xion/crud';
+import { CRUDService } from 'nestjs-xion/crud';
+import type { StandardList } from 'nestjs-xion/model';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class UserService extends CRUDService<User> {

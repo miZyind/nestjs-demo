@@ -1,3 +1,5 @@
+import { Base } from '#entities/base.entity';
+import { User } from '#entities/user.entity';
 import {
   Column,
   Entity,
@@ -5,9 +7,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
-import { User } from '#entities/user.entity';
-import { Base } from '#entities/base.entity';
 
 export enum TodoStatus {
   Doing = 'DOING',

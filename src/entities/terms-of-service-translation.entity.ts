@@ -1,3 +1,5 @@
+import { LocaleCode } from '#app/app.constant';
+import { TermsOfService } from '#entities/terms-of-service.entity';
 import {
   Column,
   Entity,
@@ -5,9 +7,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
-import { LocaleCode } from '#app/app.constant';
-import { TermsOfService } from '#entities/terms-of-service.entity';
 
 @Entity()
 export class TermsOfServiceTranslation {

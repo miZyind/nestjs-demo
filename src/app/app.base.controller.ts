@@ -1,7 +1,6 @@
+import Config, { type AppConfig } from '#configs';
 import { Controller, Get, Inject } from '@nestjs/common';
 import { ApiExcludeEndpoint } from '@nestjs/swagger';
-
-import Config, { AppConfig } from '#configs';
 
 @Controller()
 export class AppBaseController {

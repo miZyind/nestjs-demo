@@ -1,3 +1,6 @@
+import { LocaleCode } from '#app/app.constant';
+import { TermsOfServiceTranslation } from '#entities/terms-of-service-translation.entity';
+import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   ArrayNotEmpty,
@@ -10,11 +13,6 @@ import {
   IsPositive,
   IsString,
 } from 'class-validator';
-
-import { ApiProperty } from '@nestjs/swagger';
-
-import { LocaleCode } from '#app/app.constant';
-import { TermsOfServiceTranslation } from '#entities/terms-of-service-translation.entity';
 
 class AdminUpsertTermsOfServiceTranslation {
   @IsLocale()

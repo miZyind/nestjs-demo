@@ -1,8 +1,3 @@
-import { ConfigModule, ConfigService } from 'nestjs-xion/config';
-
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { AppBaseController } from '#app/app.base.controller';
 import Config from '#configs';
 import { AuthModule } from '#modules/auth/auth.module';
@@ -13,6 +8,9 @@ import { UserModule } from '#modules/user/user.module';
 import { AdminModule } from '#platforms/admin/admin.module';
 import { AppModule } from '#platforms/app/app.module';
 import { WebModule } from '#platforms/web/web.module';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from 'nestjs-xion/config';
 
 import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
 

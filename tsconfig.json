@@ -1,44 +1,28 @@
-/* TSConfig Reference https://www.typescriptlang.org/tsconfig */
 {
-  /* File Inclusion */
-  "include": ["src", "@types"],
-  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    /* Project Options */
-    "target": "ESNext",
-    "module": "CommonJS",
-    "importHelpers": true,
-    "isolatedModules": true,
+    "types": ["node", "express"],
+    "target": "esnext",
+    "module": "nodenext",
+    "rootDir": "src",
     "outDir": "dist",
-    "removeComments": true,
-    /* Strict Checks */
-    "strict": true,
-    /* Module Resolution */
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "moduleResolution": "Node10",
     "paths": {
-      "#app/*": ["src/app/*"],
-      "#configs": ["src/configs"],
-      "#configs/*": ["src/configs/*"],
-      "#entities/*": ["src/entities/*"],
-      "#modules/*": ["src/modules/*"],
-      "#platforms/*": ["src/platforms/*"],
-      "#utils/*": ["src/utils/*"]
+      "#app/*": ["./src/app/*"],
+      "#configs": ["./src/configs"],
+      "#configs/*": ["./src/configs/*"],
+      "#entities/*": ["./src/entities/*"],
+      "#modules/*": ["./src/modules/*"],
+      "#platforms/*": ["./src/platforms/*"],
+      "#utils/*": ["./src/utils/*"]
     },
-    /* Linter Checks */
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    /* Experimental */
+    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    /* Advanced */
-    "forceConsistentCasingInFileNames": true,
-    "preserveConstEnums": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   }
 }

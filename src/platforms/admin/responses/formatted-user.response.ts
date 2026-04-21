@@ -1,7 +1,6 @@
-import { ApiProperty } from '@nestjs/swagger';
-
 import { TodoStatus } from '#entities/todo.entity';
 import { Role, UserStatus } from '#entities/user.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class AdminFormattedUserTodo {
   @ApiProperty()

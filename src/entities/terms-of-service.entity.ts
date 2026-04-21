@@ -1,3 +1,6 @@
+import { Base } from '#entities/base.entity';
+import { TermsOfServiceTranslation } from '#entities/terms-of-service-translation.entity';
+import { User } from '#entities/user.entity';
 import {
   Column,
   Entity,
@@ -6,10 +9,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-
-import { Base } from '#entities/base.entity';
-import { TermsOfServiceTranslation } from '#entities/terms-of-service-translation.entity';
-import { User } from '#entities/user.entity';
 
 @Entity()
 export class TermsOfService extends Base {

@@ -1,10 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { Cron } from '@nestjs/schedule';
-
 import { SystemLogType } from '#entities/system-log.entity';
 import { SystemLogService } from '#modules/system-log/system-log.service';
 import { UserService } from '#modules/user/user.service';
 import { CronTime } from '#utils/time';
+import { Injectable } from '@nestjs/common';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class UserSchedule {

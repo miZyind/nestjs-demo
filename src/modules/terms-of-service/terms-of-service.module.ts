@@ -1,9 +1,8 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-
 import { TermsOfServiceTranslation } from '#entities/terms-of-service-translation.entity';
 import { TermsOfService } from '#entities/terms-of-service.entity';
 import { TermsOfServiceService } from '#modules/terms-of-service/terms-of-service.service';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [

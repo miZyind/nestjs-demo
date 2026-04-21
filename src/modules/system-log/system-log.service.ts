@@ -1,12 +1,9 @@
-import { CRUDService } from 'nestjs-xion/crud';
-import { Repository } from 'typeorm';
-
+import { SystemLog } from '#entities/system-log.entity';
+import type { CreateSystemLogDTO } from '#modules/system-log/system-log.interface';
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-
-import { SystemLog } from '#entities/system-log.entity';
-
-import type { CreateSystemLogDTO } from '#modules/system-log/system-log.interface';
+import { CRUDService } from 'nestjs-xion/crud';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class SystemLogService extends CRUDService<SystemLog> {
