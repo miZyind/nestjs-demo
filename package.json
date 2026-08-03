@@ -31,7 +31,7 @@
     "amqp-connection-manager": "^5.0.0",
     "amqplib": "^2.0.1",
     "bcrypt": "^6.0.0",
-    "mysql2": "^3.23.0",
+    "mysql2": "^3.23.2",
     "nestjs-xion": "^8.1.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.2",
@@ -43,13 +43,13 @@
     "@commitlint/config-conventional": "^21.2.0",
     "@nestjs/cli": "^11.0.24",
     "@types/bcrypt": "^6.0.0",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@types/passport-jwt": "^4.0.1",
     "eslint-plugin-mizyind": "^9.0.7",
     "husky": "^9.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.64.0"
+    "typescript-eslint": "^8.65.0"
   },
   "prettier": {
     "singleQuote": true,
