@@ -21,7 +21,7 @@ export class AuthService {
     attempt,
   }: LogInDTO): Promise<LogInResponse> {
     const entity = await this.userService.findOne({
-      select: ['uuid', 'status', 'password'],
+      select: { uuid: true, status: true, password: true },
       where: { email },
     });
 
@@ -43,7 +43,7 @@ export class AuthService {
 
   async validateUserAndGetRole(uuid: string): Promise<Role> {
     const entity = await this.userService.findOne({
-      select: ['status', 'role'],
+      select: { status: true, role: true },
       where: { uuid },
     });
 
