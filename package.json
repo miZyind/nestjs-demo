@@ -51,6 +51,9 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.70.0"
   },
+  "resolutions": {
+    "multer": "2.3.0"
+  },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
