@@ -45,11 +45,14 @@
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^26.6.6",
     "@types/passport-jwt": "^4.0.1",
-    "eslint-plugin-mizyind": "^9.0.9",
+    "eslint-plugin-mizyind": "^9.0.10",
     "husky": "^9.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.2"
+  },
+  "resolutions": {
+    "**/@typescript-eslint/typescript-estree/minimatch": "^11.0.8"
   },
   "prettier": {
     "singleQuote": true,
